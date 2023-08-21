@@ -6,8 +6,8 @@ import pydeck as pdk
 # import plotly.figure_factory as ff
 import plotly.express as px
 
-path = "https://drive.google.com/file/d/17rZrYJay2k4HX-eLi5sYfVwmeLiYXrjG/view?usp=drive_link"
-df_all = pd.read_csv(path)
+path = "Data/prueba_streamlit.csv"
+df_all = pd.read_csv(path, sep=',', header= 0, )
 
 ##### Configuracion de la página ###############################################################
 
@@ -42,13 +42,22 @@ def main():
     with eda:
         st.subheader('Gráfica 1')
 
-        # fig = px.scatter(data_frame = df_all.groupby('Origin').mean('DepDelay'),
-        #          x = "Origin",
-        #          y = "Mean",
-        #          size = "Max",
-        #          color = "Origin")
+        col_a, col_b = st.columns([1,2])
 
-        # fig.show()  
+        col_a.dataframe(df_all.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index())
+
+        col_b.write( 'Para ver como se relaciona la media de retraso con el aeropuerto de origen. Cuanto mas grande sea el circulo mas alejado está de la media')
+                                                        
+        dfimpresionante = df_all.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index()
+
+        fig = px.scatter(dfimpresionante,
+                 x = 'Origin',
+                 y = "mean",
+                 size = dfimpresionante['max']+20,
+                 color = 'Origin')
+
+        st.plotly_chart(fig, theme='streamlit', use_container_width=True)
+        
 
         st.markdown('''---''')
 
