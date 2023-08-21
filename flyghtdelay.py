@@ -86,15 +86,19 @@ def main():
             st.image('https://media.licdn.com/dms/image/D4D03AQHaDZ_9s0lxmw/profile-displayphoto-shrink_400_400/0/1686648949588?e=1697673600&v=beta&t=ICAUdXK_vGrLMuzRQVqEmNW5rmQai1INiEzbSkI9LLY',
                     width= 200,)
             st.subheader('Miguel Nieto')
-            if col_2.button(label = 'Linkedin Miguel', use_container_width= True, ):
-                webbrowser.open_new_tab('https://www.linkedin.com/in/miguel-nieto-p/')
+            # if col_2.button(label = 'Linkedin Miguel', use_container_width= True, ):
+            #     webbrowser.open_new_tab('https://www.linkedin.com/in/miguel-nieto-p/')
+            link = '[Linkedin](https://www.linkedin.com/in/miguel-nieto-p/)'
+            st.markdown(link, unsafe_allow_html=True)
         
         with col_3:
             st.image('https://media.licdn.com/dms/image/D4D03AQGJSyQ4v4QVFw/profile-displayphoto-shrink_800_800/0/1687511681863?e=2147483647&v=beta&t=kJ_dBjX9dpThCF6CfqgSGo8R-9j8hNSJTbXQDewXHYU',
                     width= 200,)
             st.subheader('Sergio Soler')
-            if col_3.button(label = 'Linkedin Sergio', use_container_width= True, ):
-                webbrowser.open_new_tab('https://www.linkedin.com/in/sergiosolergarcia/')
+            # if col_3.button(label = 'Linkedin Sergio', use_container_width= True, ):
+            #     webbrowser.open_new_tab('https://www.linkedin.com/in/sergiosolergarcia/')
+            link = '[Linkedin](https://www.linkedin.com/in/sergiosolergarcia/)'
+            st.markdown(link, unsafe_allow_html=True)
 
     pass
 
