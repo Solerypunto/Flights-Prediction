@@ -42,13 +42,13 @@ def main():
     with eda:
         st.subheader('Gráfica 1')
 
-        fig = px.scatter(data_frame = df_all.groupby('Origin').mean('DepDelay'),
-                 x = "Origin",
-                 y = "Mean",
-                 size = "Max",
-                 color = "Origin")
+        # fig = px.scatter(data_frame = df_all.groupby('Origin').mean('DepDelay'),
+        #          x = "Origin",
+        #          y = "Mean",
+        #          size = "Max",
+        #          color = "Origin")
 
-        fig.show()  
+        # fig.show()  
 
         st.markdown('''---''')
 
