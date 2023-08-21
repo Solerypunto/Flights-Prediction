@@ -6,6 +6,9 @@ import pydeck as pdk
 # import plotly.figure_factory as ff
 import plotly.express as px
 
+path = "https://drive.google.com/file/d/17rZrYJay2k4HX-eLi5sYfVwmeLiYXrjG/view?usp=drive_link"
+df = pd.read_csv(path)
+
 ##### Configuracion de la página ###############################################################
 
 st.set_page_config(page_title= 'Flight delay predictor',
@@ -39,19 +42,14 @@ def main():
     with eda:
         st.subheader('Gráfica 1')
 
-        chart_data = pd.DataFrame(
-            np.random.randn(200, 3),
-            columns=['a', 'b', 'c'],)
+        fig = px.scatter(data_frame = df_all.groupBy("Origin").agg(avg(col("DepDelay")).alias("Mean"),
+                                                           max(col("DepDelay")).alias("Max")).toPandas(),
+                 x = "Origin",
+                 y = "Mean",
+                 size = "Max",
+                 color = "Origin")
 
-        st.vega_lite_chart(chart_data, {
-            'mark': {'type': 'circle', 'tooltip': True},
-            'encoding': {
-                'x': {'field': 'a', 'type': 'quantitative'},
-                'y': {'field': 'b', 'type': 'quantitative'},
-                'size': {'field': 'c', 'type': 'quantitative'},
-                'color': {'field': 'c', 'type': 'quantitative'},
-            }, 
-        }, use_container_width= True, theme= None)
+        fig.show()  
 
         st.markdown('''---''')
 
