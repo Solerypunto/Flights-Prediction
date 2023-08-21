@@ -99,7 +99,6 @@ def main():
             #     webbrowser.open_new_tab('https://www.linkedin.com/in/sergiosolergarcia/')
             link = '[Linkedin](https://www.linkedin.com/in/sergiosolergarcia/)'
             st.markdown(link, unsafe_allow_html=True)
-            st.button('[Linkedin](https://www.linkedin.com/in/sergiosolergarcia/)')
 
     pass
 
