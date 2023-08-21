@@ -3,7 +3,7 @@ import webbrowser
 import pandas as pd
 import numpy as np
 import pydeck as pdk
-import plotly.figure_factory as ff
+# import plotly.figure_factory as ff
 import plotly.express as px
 
 ##### Configuracion de la página ###############################################################
@@ -31,7 +31,7 @@ def main():
                   aquí va una intro del proyecto para que la gente se entere de que va, ''')
         st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
-##### EDA #########################################
+##### EDA ###############################################################
 
 # Mapa 3D
 # https://docs.streamlit.io/library/api-reference/charts/st.pydeck_chart 
