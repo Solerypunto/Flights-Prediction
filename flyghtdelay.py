@@ -77,8 +77,10 @@ def main():
             st.image('https://media.licdn.com/dms/image/D4D03AQEZNDYmDw6xbQ/profile-displayphoto-shrink_400_400/0/1687197904792?e=1697673600&v=beta&t=punW-e_QYI9KavGDk8XWqvzckRiuNT9yzGn3d1BDfvY',
                     width= 200,)
             st.subheader('Germán Fernandez')
-            if col_1.button(label = 'Linkedin Germán', use_container_width= True, ):
-                webbrowser.open_new_tab('https://www.linkedin.com/in/german-fernandez-corrales/')
+            # if col_1.button(label = 'Linkedin Germán', use_container_width= True, ):
+            #     webbrowser.open_new_tab('https://www.linkedin.com/in/german-fernandez-corrales/')
+            link = '[Linkedin](https://www.linkedin.com/in/german-fernandez-corrales/)'
+            st.markdown(link, unsafe_allow_html=True)
 
         with col_2:
             st.image('https://media.licdn.com/dms/image/D4D03AQHaDZ_9s0lxmw/profile-displayphoto-shrink_400_400/0/1686648949588?e=1697673600&v=beta&t=ICAUdXK_vGrLMuzRQVqEmNW5rmQai1INiEzbSkI9LLY',
