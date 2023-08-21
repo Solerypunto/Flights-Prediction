@@ -95,10 +95,11 @@ def main():
             st.image('https://media.licdn.com/dms/image/D4D03AQGJSyQ4v4QVFw/profile-displayphoto-shrink_800_800/0/1687511681863?e=2147483647&v=beta&t=kJ_dBjX9dpThCF6CfqgSGo8R-9j8hNSJTbXQDewXHYU',
                     width= 200,)
             st.subheader('Sergio Soler')
-            if col_3.button(label = 'Linkedin Sergio', use_container_width= True, ):
+            link = '[Linkedin](https://www.linkedin.com/in/sergiosolergarcia/)'
+            col_3.button(label = 'Linkedin Sergio', key= link,use_container_width= True, ):
             #     webbrowser.open_new_tab('https://www.linkedin.com/in/sergiosolergarcia/')
-                link = '[Linkedin](https://www.linkedin.com/in/sergiosolergarcia/)'
-                st.markdown(link, unsafe_allow_html=True)
+                
+            st.markdown(link, unsafe_allow_html=True)
             
 
     pass
