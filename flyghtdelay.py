@@ -7,7 +7,7 @@ import pydeck as pdk
 import plotly.express as px
 
 path = "https://drive.google.com/file/d/17rZrYJay2k4HX-eLi5sYfVwmeLiYXrjG/view?usp=drive_link"
-df = pd.read_csv(path)
+df_all = pd.read_csv(path)
 
 ##### Configuracion de la página ###############################################################
 
@@ -42,8 +42,7 @@ def main():
     with eda:
         st.subheader('Gráfica 1')
 
-        fig = px.scatter(data_frame = df_all.groupBy("Origin").agg(avg(col("DepDelay")).alias("Mean"),
-                                                           max(col("DepDelay")).alias("Max")).toPandas(),
+        fig = px.scatter(data_frame = df_all.groupby('Origin').mean('DepDelay'),
                  x = "Origin",
                  y = "Mean",
                  size = "Max",
