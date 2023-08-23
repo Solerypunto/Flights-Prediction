@@ -3,7 +3,6 @@ import webbrowser
 import pandas as pd
 import numpy as np
 import pydeck as pdk
-# import plotly.figure_factory as ff
 import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -128,11 +127,12 @@ def main():
 
 
         st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
+        
+        ## Mapa 3D
 
         st.subheader('Mapa Retrasos')
         st.write('En este mapa podemos ver la media de los retrasos en los aeropuertos de EUA. \n A mayor retraso, mas altura en la columna')
 
-        ## Mapa 3D
         # https://docs.streamlit.io/library/api-reference/charts/st.pydeck_chart 
 
         df_mapa = pd.DataFrame(df_all.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index())
@@ -164,10 +164,10 @@ def main():
                                                     pickable=True,
                                                     extruded=True,
                                                     ),],tooltip= {
-                                                        
-    "html": "Aeropuerto <b>{Origin}</b>. <br>  <b>{mean}</b> min de retrasio medio <br> <b>{max}</b> min. de retraso máximo. ",
-    "style": {"background": "black", "color": "white", "font-family": '"Space Mono", Arial', "z-index": "8000"}},))
+        "html": "Aeropuerto <b>{Origin}</b>. <br>  <b>{mean}</b> min de retrasio medio <br> <b>{max}</b> min. de retraso máximo. ",
+        "style": {"background": "black", "color": "white", "font-family": '"Space Mono", Arial', "z-index": "8000"}},))
 
+        st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 
 
