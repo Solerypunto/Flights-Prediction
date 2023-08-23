@@ -1,10 +1,4 @@
-absl-py==1.4.0
-aiofiles @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_0ar7qj9rcj/croot/aiofiles_1683773588297/work
-aiosqlite @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_13w97vul7u/croot/aiosqlite_1683773912122/work
-altair==5.0.1
-anaconda-client==1.11.1
-anaconda-navigator==2.4.2
-anaconda-project @ file:///private/var/folders/sy/f16zz6x50xz3113nwtb9bvq00000gp/T/abs_52iciqycjz/croots/recipe/anaconda-project_1660339902500/work
+
 anyio @ file:///opt/concourse/worker/volumes/live/eb44598f-565b-45e7-4c50-c1ae70306e18/volume/anyio_1644481722202/work/dist
 appnope @ file:///Users/builder/ci_310/appnope_1642500616005/work
 argon2-cffi @ file:///opt/conda/conda-bld/argon2-cffi_1645000214183/work
