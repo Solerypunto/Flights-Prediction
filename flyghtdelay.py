@@ -102,7 +102,7 @@ def main():
                                   default = 'New York, NY')
 
         dfmapapersonalizado = st.dataframe(df_mapa1[df_mapa1['OriginCityName']=='New York, NY'])
-        dfmapapersonalizado['DepDelayMinutes'] += 10
+        # dfmapapersonalizado['DepDelayMinutes'] += 10
 
         GREEN_RGB = [0, 255, 0, 40]
         RED_RGB = [240, 100, 0, 40]
@@ -114,7 +114,8 @@ def main():
                                                                   pitch=0,),
                                  layers=[pdk.Layer("ArcLayer",
                                                     data=dfmapapersonalizado,
-                                                    get_width="DepDelayMinutes",
+                                                    get_width=0.5,
+                                                    # "DepDelayMinutes",
                                                     get_source_position=["LONGITUDE", "LATITUDE"],
                                                     get_target_position=["LONGITUDEdest", "LATITUDEdest"],
                                                     get_tilt=1,
