@@ -113,7 +113,7 @@ def main():
                                                                   pitch=0,),
                                  layers=[pdk.Layer("ArcLayer",
                                                     data=dfmapapersonalizado,
-                                                    get_width="DepDelayMinutes /100",
+                                                    get_width="DepDelayMinutes",
                                                     get_source_position=["LONGITUDE", "LATITUDE"],
                                                     get_target_position=["LONGITUDEdest", "LATITUDEdest"],
                                                     get_tilt=1,
