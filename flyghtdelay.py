@@ -101,7 +101,7 @@ def main():
                                   options = ORIGENES, 
                                   default = 'New York, NY')
 
-        dfmapapersonalizado = df_mapa1[df_mapa1['OriginCityName']== list(ORIGEN)]
+        dfmapapersonalizado = st.dataframe(df_mapa1[df_mapa1['OriginCityName']== list(ORIGEN)])
         # dfmapapersonalizado['DepDelayMinutes'] += 10
 
         GREEN_RGB = [0, 255, 0, 40]
