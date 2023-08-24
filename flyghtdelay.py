@@ -100,6 +100,8 @@ def main():
         ORIGEN = st.multiselect(label = "Ciudad de origen",
                                   options = ORIGENES, 
                                   default = 'New York, NY')
+        
+        st.markdown(type(ORIGEN))
 
         dfmapapersonalizado = st.dataframe(df_mapa1[df_mapa1['OriginCityName']== list(ORIGEN)])
         # dfmapapersonalizado['DepDelayMinutes'] += 10
