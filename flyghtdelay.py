@@ -100,13 +100,11 @@ def main():
         ORIGEN = st.multiselect(label = "Ciudad de origen",
                                   options = ORIGENES, 
                                   default = 'New York, NY')
-        
-        st.markdown(type(ORIGEN))
 
         dfmapapersonalizado = df_mapa1[df_mapa1['OriginCityName'].isin(ORIGEN)]
         dfmapapersonalizado['DepDelayMinutes'] += 10
 
-        GREEN_RGB = [0, 255, 0, 40]
+        GREEN_RGB = [255, 255, 0, 40]
         RED_RGB = [240, 100, 0, 40]
 
         st.pydeck_chart(pdk.Deck( map_style=None, 
@@ -126,7 +124,7 @@ def main():
                                                     auto_highlight=True,
                                                     ),],
                                                     tooltip= {
-        "html": "Origen <b>{OriginCityName}</b>, Destino <b>{DestCityName}</b>. <br>  <b>{mean}</b> min de retrasio medio <br> <b>{max}</b> min. de retraso máximo. ",
+        "html": "Origen <b>{OriginCityName}</b>, Destino <b>{DestCityName}</b>. <br>  <b>{DepDelayMinutes}</b> min de retrasio medio <br> <b>{max}</b> min. de retraso máximo. ",
         "style": {"background": "black", "color": "white", "font-family": '"Space Mono", Arial', "z-index": "8000",  'border-radius': '5'}},
                                                     ))
 
