@@ -103,8 +103,8 @@ def main():
         
         st.markdown(type(ORIGEN))
 
-        dfmapapersonalizado = st.dataframe(df_mapa1[df_mapa1['OriginCityName'].isin(ORIGEN)])
-        # dfmapapersonalizado['DepDelayMinutes'] += 10
+        dfmapapersonalizado = df_mapa1[df_mapa1['OriginCityName'].isin(ORIGEN)]
+        dfmapapersonalizado['DepDelayMinutes'] += 10
 
         GREEN_RGB = [0, 255, 0, 40]
         RED_RGB = [240, 100, 0, 40]
