@@ -106,26 +106,26 @@ def main():
         GREEN_RGB = [0, 255, 0, 40]
         RED_RGB = [240, 100, 0, 40]
 
-        # st.pydeck_chart(pdk.Deck( map_style=None, 
-        #                          initial_view_state=pdk.ViewState(latitude=38,
-        #                                                           longitude= -98.579437, 
-        #                                                           zoom=2.6,
-        #                                                           pitch=0,),
-        #                          layers=[pdk.Layer("ArcLayer",
-        #                                             data=dfmapapersonalizado,
-        #                                             get_width="DepDelayMinutes /100",
-        #                                             get_source_position=["LONGITUDE", "LATITUDE"],
-        #                                             get_target_position=["LONGITUDEdest", "LATITUDEdest"],
-        #                                             get_tilt=1,
-        #                                             get_source_color=RED_RGB,
-        #                                             get_target_color=GREEN_RGB,
-        #                                             pickable=True,
-        #                                             auto_highlight=True,
-        #                                             ),],
-        #                                             tooltip= {
-        # "html": "Origen <b>{OriginCityName}</b>, Destino <b>{DestCityName}</b>. <br>  <b>{mean}</b> min de retrasio medio <br> <b>{max}</b> min. de retraso máximo. ",
-        # "style": {"background": "black", "color": "white", "font-family": '"Space Mono", Arial', "z-index": "8000",  'border-radius': '5'}},
-        #                                             ))
+        st.pydeck_chart(pdk.Deck( map_style=None, 
+                                 initial_view_state=pdk.ViewState(latitude=38,
+                                                                  longitude= -98.579437, 
+                                                                  zoom=2.6,
+                                                                  pitch=0,),
+                                 layers=[pdk.Layer("ArcLayer",
+                                                    data=dfmapapersonalizado,
+                                                    get_width="DepDelayMinutes /100",
+                                                    get_source_position=["LONGITUDE", "LATITUDE"],
+                                                    get_target_position=["LONGITUDEdest", "LATITUDEdest"],
+                                                    get_tilt=1,
+                                                    get_source_color=RED_RGB,
+                                                    get_target_color=GREEN_RGB,
+                                                    pickable=True,
+                                                    auto_highlight=True,
+                                                    ),],
+                                                    tooltip= {
+        "html": "Origen <b>{OriginCityName}</b>, Destino <b>{DestCityName}</b>. <br>  <b>{mean}</b> min de retrasio medio <br> <b>{max}</b> min. de retraso máximo. ",
+        "style": {"background": "black", "color": "white", "font-family": '"Space Mono", Arial', "z-index": "8000",  'border-radius': '5'}},
+                                                    ))
 
 
 
