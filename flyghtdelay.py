@@ -23,7 +23,7 @@ streamlit_style = """
 
 			html, body, [class*="css"]  {
 			font-family: 'Space Mono', sans-serif;
-            font-weigth: 900;
+
 			}
 			</style>
 			"""
@@ -40,9 +40,38 @@ st.markdown(streamlit_style, unsafe_allow_html=True)
 
 
 ## DATA ###############################################################
-
+# dataset ppal
 path = "Data/prueba_streamlit.csv"
 df_all = pd.read_csv(path, sep=',', header= 0, )
+
+# lat long
+path = "Data/dic_lat_long.csv"
+df_lat_long = pd.read_csv(path, sep=',', header= 0, )
+path = 'Data/airports.csv'
+airports_lat_long = pd.read_csv(path, sep=',', header= 0, )
+airports_lat_long = airports_lat_long.drop(["AIRPORT", "CITY", "STATE", "COUNTRY"],axis=1)
+df_lat_long = pd.concat([airports_lat_long,df_lat_long],axis=0)
+
+# df Mapa 1
+# Generamos un df con la columna 'Origin' para despues añadir las latitudes y longitudes de del origen
+df_mapa1 = df_all[['Origin', 'OriginCityName']]
+df_mapa1 = pd.merge(left=df_mapa1, right= df_lat_long, left_on= 'Origin',right_on='IATA',)
+df_mapa1 = df_mapa1.drop('IATA',axis=1)
+# Generamos un df con la columna 'Dest' para despues añadir las latitudes y longitudes de del destino. 
+# Luego cambiamos nombres a las columnas de latitud y longitud
+df_mapa11 = df_all[['Dest', 'DestCityName', 'DepDelayMinutes']]
+df_mapa11 = pd.merge(left=df_mapa11, right= df_lat_long, left_on= 'Dest',right_on='IATA',)
+df_mapa11 = df_mapa11.drop('IATA',axis=1)
+df_mapa11 = df_mapa11.rename(columns= {'LATITUDE':'LATITUDEdest','LONGITUDE': 'LONGITUDEdest'},)
+# Unimos ambos df (y borramos el df sobrante de la memoria)
+df_mapa1 = pd.merge(left=df_mapa1, right= df_mapa11, left_index= True, right_index= True,)
+del df_mapa11
+df_mapa1 = df_mapa1.dropna()
+
+# df Mapa 2 y 3
+df_mapa = pd.DataFrame(df_all.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index())
+df_mapa = df_mapa.round(1)
+df_mapa = pd.merge(left=df_mapa, right= df_lat_long, left_on= 'Origin',right_on='IATA',)
 
 ##### Cuerpo de la página ###############################################################
 def main():
@@ -65,6 +94,39 @@ def main():
                   aquí va una intro del proyecto para que la gente se entere de que va, ''')
         st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
+        # Mapa vuelos
+        
+        ORIGENES = list(df_mapa1['OriginCityName'].unique())
+        ORIGEN = st.multiselect(label = "Ciudad de origen",
+                                  options = ORIGENES, 
+                                  default = 'New York, NY')
+
+        dfmapapersonalizado = st.dataframe(df_mapa1[df_mapa1['OriginCityName']=='New York, NY'])
+
+        GREEN_RGB = [0, 255, 0, 40]
+        RED_RGB = [240, 100, 0, 40]
+
+        # st.pydeck_chart(pdk.Deck( map_style=None, 
+        #                          initial_view_state=pdk.ViewState(latitude=38,
+        #                                                           longitude= -98.579437, 
+        #                                                           zoom=2.6,
+        #                                                           pitch=0,),
+        #                          layers=[pdk.Layer("ArcLayer",
+        #                                             data=dfmapapersonalizado,
+        #                                             get_width="DepDelayMinutes /100",
+        #                                             get_source_position=["LONGITUDE", "LATITUDE"],
+        #                                             get_target_position=["LONGITUDEdest", "LATITUDEdest"],
+        #                                             get_tilt=1,
+        #                                             get_source_color=RED_RGB,
+        #                                             get_target_color=GREEN_RGB,
+        #                                             pickable=True,
+        #                                             auto_highlight=True,
+        #                                             ),],
+        #                                             tooltip= {
+        # "html": "Origen <b>{OriginCityName}</b>, Destino <b>{DestCityName}</b>. <br>  <b>{mean}</b> min de retrasio medio <br> <b>{max}</b> min. de retraso máximo. ",
+        # "style": {"background": "black", "color": "white", "font-family": '"Space Mono", Arial', "z-index": "8000",  'border-radius': '5'}},
+        #                                             ))
+
 
 
 ##### EDA ###############################################################
@@ -74,7 +136,7 @@ def main():
         st.subheader('Dataset')
         st.write('''El dataset contiene multiples documentos, se pueden agrupar en datos en crudo y datos ya ordenados, Optamos por quedarnos con los ordenados:
                 6 documentos. Optamos por el formato *.parquet porque es mas ligero que *.csv \n
-                 Tamaño total del dataset: 29.193.782, 61''')
+                 Tamaño total del dataset: 29.193.782 x 61''')
         st.write('Para complementar hemos creado las columnas de Latitud y Longitud para hacer gráficas')
 
         st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
@@ -135,19 +197,6 @@ def main():
 
         # https://docs.streamlit.io/library/api-reference/charts/st.pydeck_chart 
 
-        df_mapa = pd.DataFrame(df_all.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index())
-        df_mapa = df_mapa.round(1)
-
-        path = "Data/dic_lat_long.csv"
-        df_lat_long = pd.read_csv(path, sep=',', header= 0, )
-        path = 'Data/airports.csv'
-        airports_lat_long = pd.read_csv(path, sep=',', header= 0, )
-        airports_lat_long = airports_lat_long.drop(["AIRPORT", "CITY", "STATE", "COUNTRY"],axis=1)
-        df_lat_long = pd.concat([airports_lat_long,df_lat_long],axis=0)
-
-
-        df_mapa = pd.merge(left=df_mapa, right= df_lat_long,left_on= 'Origin',right_on='IATA',)
-
         st.pydeck_chart(pdk.Deck( map_style=None, 
                                  initial_view_state=pdk.ViewState(latitude=38,
                                                                   longitude= -98.579437, 
@@ -158,14 +207,34 @@ def main():
                                                     get_position='[LONGITUDE,LATITUDE]',
                                                     get_elevation='mean',
                                                     radius=30000,
-                                                    elevation_scale=4500,
+                                                    elevation_scale=7500,
                                                     elevation_range=[0, 1000], 
                                                     get_fill_color= [255, 255, 0 , 75],
+                                                    auto_highlight=True,
                                                     pickable=True,
                                                     extruded=True,
                                                     ),],tooltip= {
         "html": "Aeropuerto <b>{Origin}</b>. <br>  <b>{mean}</b> min de retrasio medio <br> <b>{max}</b> min. de retraso máximo. ",
-        "style": {"background": "black", "color": "white", "font-family": '"Space Mono", Arial', "z-index": "8000"}},))
+        "style": {"background": "black", "color": "white", "font-family": '"Space Mono", Arial', "z-index": "8000",  'border-radius': '5'}},))
+
+        # mapa de calor
+        st.pydeck_chart(pdk.Deck( map_style=None, 
+                                 initial_view_state=pdk.ViewState(latitude=38,
+                                                                  longitude= -98.579437, 
+                                                                  zoom=2.6,
+                                                                  pitch=0,),
+                                 layers=[pdk.Layer("HeatmapLayer",
+                                                    data=df_mapa,
+                                                    get_position='[LONGITUDE,LATITUDE]',
+                                                    aggregation='mean',
+                                                    get_weight='max',
+                                                    pickable=True,
+                                                    opacity=0.8,
+                                                    ),],
+                                                    tooltip= {
+        "html": "Aeropuerto <b>{Origin}</b>. <br>  <b>{mean}</b> min de retrasio medio <br> <b>{max}</b> min. de retraso máximo. ",
+        "style": {"background": "black", "color": "white", "font-family": '"Space Mono", Arial', "z-index": "8000",  'border-radius': '5'}},
+                                                    ))
 
         st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
