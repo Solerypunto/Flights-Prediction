@@ -124,10 +124,10 @@ def main():
                                                     auto_highlight=True,
                                                     ),],
                                                     tooltip= {
-        "html": "Origen <b>{OriginCityName}</b>, Destino <b>{DestCityName}</b>. <br>  <b>{DepDelayMinutes}</b> min de retrasio medio <br> <b>{max}</b> min. de retraso máximo. ",
+        "html": "Origen <b>{OriginCityName}</b>, Destino <b>{DestCityName}</b>. <br>  <b>{DepDelayMinutes}</b> min de retrasio.",
         "style": {"background": "black", "color": "white", "font-family": '"Space Mono", Arial', "z-index": "8000",  'border-radius': '5'}},
                                                     ))
-
+        del dfmapapersonalizado
 
 
 ##### EDA ###############################################################
