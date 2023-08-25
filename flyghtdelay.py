@@ -85,8 +85,8 @@ def main():
 ##### Home ###############################################################
 
     with home:
-        st.header('Esto es un :orange[header] de prueba')
-        st.subheader('Esto es un subheader pa probá a ve como queda esto')
+        st.header('Predicción en el retraso de los vuelos')
+        st.subheader('A partir de dataset de vuelos intra-estadounidenses')
         st. write('''Aquí va una intro del proyecto para que la gente se entere de que va, 
                   aquí va una intro del proyecto para que la gente se entere de que va, 
                   aquí va una intro del proyecto para que la gente se entere de que va, 
