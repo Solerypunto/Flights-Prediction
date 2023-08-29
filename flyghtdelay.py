@@ -83,8 +83,6 @@ def main():
                 "nav-link": {"--hover-color": "#1E1E1C", 'font-weight': '900'},
                 
                 },)
-        
-        st_lottie(requests.get("https://lottie.host/e94e8eb0-c1ed-41c3-b6da-b22a5104f594/4sofR9rtYA.json").json(), height=200, key="paperplane")
 
 ##### Home ###############################################################
 
@@ -255,6 +253,8 @@ def main():
 ##### Predictor ###############################################################
 
     if selected == 'PREDICTOR':
+
+        st_lottie(requests.get("https://lottie.host/e94e8eb0-c1ed-41c3-b6da-b22a5104f594/4sofR9rtYA.json").json(), height=200, key="paperplane")
 
         st.header('¿Cual es tu vuelo?')
 
