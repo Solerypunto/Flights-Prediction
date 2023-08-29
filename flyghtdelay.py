@@ -84,13 +84,13 @@ def main():
                 
                 },)
         
-        st_lottie(requests.get("https://lottie.host/e94e8eb0-c1ed-41c3-b6da-b22a5104f594/4sofR9rtYA.json").json(), height=300, key="car")
+        st_lottie(requests.get("https://lottie.host/e94e8eb0-c1ed-41c3-b6da-b22a5104f594/4sofR9rtYA.json").json(), height=200, key="paperplane")
 
 ##### Home ###############################################################
 
     if selected == 'HOME':
  
-        st_lottie(requests.get("https://lottie.host/af7dcf94-5405-4391-90c5-e4cb9f801dbb/ZcNtRXN2y4.json").json(), height=300, key="car")
+        st_lottie(requests.get("https://lottie.host/af7dcf94-5405-4391-90c5-e4cb9f801dbb/ZcNtRXN2y4.json").json(), height=300, key="airport")
 
         st.header('Predicción en el retraso de los vuelos')
         st.subheader('A partir de dataset de vuelos intra-estadounidenses')
@@ -141,7 +141,7 @@ def main():
 
     if selected == 'EDA':
 
-        st_lottie(requests.get("https://lottie.host/e44dedf0-4f98-49e3-ab19-709275c763ae/zWrhP5d1F7.json").json(), height=300, key="car")
+        st_lottie(requests.get("https://lottie.host/e44dedf0-4f98-49e3-ab19-709275c763ae/zWrhP5d1F7.json").json(), height=300, key="airport-eda")
         
         ##
         st.subheader('Dataset')
