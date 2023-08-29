@@ -82,7 +82,7 @@ def main():
 
     with st.sidebar:
         selected = option_menu(None, ['HOME', 'EDA', 'PREDICTOR', 'ABOUT'], 
-            icons=['house','airplane fill', 'gear','list-task'], 
+            icons=['house','airplane fill', 'gear','list'], 
             menu_icon="cast", default_index=0, 
             styles={
                 "nav-link-selected": {"color": "#000000", 'font-weight': '900'},
