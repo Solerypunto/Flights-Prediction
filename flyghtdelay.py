@@ -87,7 +87,7 @@ def main():
 
     if selected == 'HOME':
  
-        st_lottie(requests.get("https://lottie.host/e44dedf0-4f98-49e3-ab19-709275c763ae/zWrhP5d1F7.json").json(), height=300, key="car")
+        st_lottie(requests.get("https://lottie.host/af7dcf94-5405-4391-90c5-e4cb9f801dbb/ZcNtRXN2y4.json").json(), height=300, key="car")
 
         st.header('Predicción en el retraso de los vuelos')
         st.subheader('A partir de dataset de vuelos intra-estadounidenses')
@@ -108,8 +108,8 @@ def main():
         dfmapapersonalizado = df_mapa1[df_mapa1['OriginCityName'].isin(ORIGEN)]
         dfmapapersonalizado['DepDelayMinutes'] += 10
 
-        GREEN_RGB = [255, 255, 0, 40]
-        RED_RGB = [240, 100, 0, 40]
+        Y_RGB = [255, 255, 0, 40]
+        G_RGB = [56, 191, 140, 40]
 
         st.pydeck_chart(pdk.Deck( map_style=None, 
                                  initial_view_state=pdk.ViewState(latitude=38,
@@ -122,8 +122,8 @@ def main():
                                                     get_source_position=["LONGITUDE", "LATITUDE"],
                                                     get_target_position=["LONGITUDEdest", "LATITUDEdest"],
                                                     get_tilt=1,
-                                                    get_source_color=GREEN_RGB,
-                                                    get_target_color=RED_RGB,
+                                                    get_source_color=Y_RGB,
+                                                    get_target_color=G_RGB,
                                                     pickable=True,
                                                     auto_highlight=True,
                                                     ),],
@@ -137,6 +137,9 @@ def main():
 ##### EDA ###############################################################
 
     if selected == 'EDA':
+
+        st_lottie(requests.get("https://lottie.host/e44dedf0-4f98-49e3-ab19-709275c763ae/zWrhP5d1F7.json").json(), height=300, key="car")
+        
         ##
         st.subheader('Dataset')
         st.write('''El dataset contiene multiples documentos, se pueden agrupar en datos en crudo y datos ya ordenados, Optamos por quedarnos con los ordenados:
@@ -202,6 +205,8 @@ def main():
 
         # https://docs.streamlit.io/library/api-reference/charts/st.pydeck_chart 
 
+        Y_RGB = [255, 255, 0, 80]
+
         st.pydeck_chart(pdk.Deck( map_style=None, 
                                  initial_view_state=pdk.ViewState(latitude=38,
                                                                   longitude= -98.579437, 
@@ -214,7 +219,7 @@ def main():
                                                     radius=30000,
                                                     elevation_scale=7500,
                                                     elevation_range=[0, 1000], 
-                                                    get_fill_color= [255, 255, 0 , 75],
+                                                    get_fill_color= Y_RGB,
                                                     auto_highlight=True,
                                                     pickable=True,
                                                     extruded=True,
@@ -247,6 +252,9 @@ def main():
 ##### Predictor ###############################################################
 
     if selected == 'PREDICTOR':
+
+        st_lottie(requests.get("https://lottie.host/e94e8eb0-c1ed-41c3-b6da-b22a5104f594/4sofR9rtYA.json").json(), height=300, key="car")
+
         st.header('¿Cual es tu vuelo?')
 
         fechavuelo = st.date_input("¿Cuando es tu vuelo?", datetime.date(2023, 9, 10))
