@@ -75,8 +75,6 @@ def main():
 
     with st.sidebar:
 
-        st_lottie(requests.get("https://lottie.host/e94e8eb0-c1ed-41c3-b6da-b22a5104f594/4sofR9rtYA.json").json(), height=300, key="car")
-
         selected = option_menu(None, ['HOME', 'EDA', 'PREDICTOR', 'ABOUT'], 
             icons=['house', 'bi bi-graph-up','bi bi-airplane','list'], 
             menu_icon="cast", default_index=0, 
@@ -85,6 +83,8 @@ def main():
                 "nav-link": {"--hover-color": "#1E1E1C", 'font-weight': '900'},
                 
                 },)
+        
+        st_lottie(requests.get("https://lottie.host/e94e8eb0-c1ed-41c3-b6da-b22a5104f594/4sofR9rtYA.json").json(), height=300, key="car")
 
 ##### Home ###############################################################
 
