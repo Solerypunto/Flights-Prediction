@@ -6,4 +6,5 @@ pydeck==0.8.0
 seaborn==0.12.2
 streamlit==1.25.0
 streamlit-folium==0.13.0
+streamlit-lottie==0.0.3
 streamlit-option-menu==0.3.2
