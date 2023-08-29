@@ -6,12 +6,14 @@ import pydeck as pdk
 import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
+import datetime
+from streamlit_option_menu import option_menu
 
 ##### Configuracion de la página ###############################################################
 
 st.set_page_config(page_title= 'Flight delay predictor',
                    page_icon= ':airplane_departure:',
-                   initial_sidebar_state= 'collapsed', layout= 'wide',)
+                   initial_sidebar_state= 'expanded', layout= 'wide',)
 
 
 
@@ -78,13 +80,19 @@ def main():
 
     st.title('FLIGHT DELAY PREDICTOR')
 
-    home, eda, predictor, about = st.tabs(['Home', 'EDA', 'Predictor', 'About'])
-
-
+    with st.sidebar:
+        selected = option_menu(None, ['HOME', 'EDA', 'PREDICTOR', 'ABOUT'], 
+            icons=['house','airplane fill', 'gear','list-task'], 
+            menu_icon="cast", default_index=0, 
+            styles={
+                "nav-link-selected": {"color": "#000000", 'font-weight': '900'},
+                "nav-link": {"--hover-color": "#1E1E1C", 'font-weight': '900'},
+                
+                },)
 
 ##### Home ###############################################################
 
-    with home:
+    if selected == 'HOME':
         st.header('Predicción en el retraso de los vuelos')
         st.subheader('A partir de dataset de vuelos intra-estadounidenses')
         st. write('''Aquí va una intro del proyecto para que la gente se entere de que va, 
@@ -132,7 +140,7 @@ def main():
 
 ##### EDA ###############################################################
 
-    with eda:
+    if selected == 'EDA':
         ##
         st.subheader('Dataset')
         st.write('''El dataset contiene multiples documentos, se pueden agrupar en datos en crudo y datos ya ordenados, Optamos por quedarnos con los ordenados:
@@ -148,8 +156,8 @@ def main():
 
         col_a, col_b = st.columns([1,2])
 
-        with col_a: 
-            st.dataframe(df_all.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index(),use_container_width=True)
+        # with col_a: 
+        #     st.dataframe(df_all.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index(),use_container_width=True)
 
         with col_b:                                           
             dfimpresionante = df_all.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index()
@@ -179,9 +187,9 @@ def main():
             
             col_a, col_b = st.columns(2)
 
-            with col_a:
-                st.write('Comprobamos la correlación de las columnas para acotar cuales usaremos en el modelo')
-                st.dataframe(data = df_all, height = 600,)
+            # with col_a:
+            #     st.write('Comprobamos la correlación de las columnas para acotar cuales usaremos en el modelo')
+            #     st.dataframe(data = df_all, height = 600,)
 
             with col_b:
                 fig, ax = plt.subplots(figsize=(24,24))
@@ -240,10 +248,25 @@ def main():
         st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 
+##### Predictor ###############################################################
+
+    if selected == 'PREDICTOR':
+        st.header('¿Cual es tu vuelo?')
+
+        fechavuelo = st.date_input("¿Cuando es tu vuelo?", datetime.date(2023, 9, 10))
+        st.write('Tu vuelo sale el:', fechavuelo)
+
+        horavuelo = st.date_input("¿Cuando es tu vuelo?", datetime.time())
+        st.write('Tu vuelo sale a las:', horavuelo)
+
+
+
+
+
 
 ##### About ###############################################################
 
-    with about:
+    if selected == 'ABOUT':
         st.header('Team')
         col_1, col_2, col_3 = st.columns(3)
 
@@ -253,7 +276,7 @@ def main():
             st.subheader('Germán Fernandez')
             # if col_1.button(label = 'Linkedin Germán', use_container_width= True, ):
             #     webbrowser.open_new_tab('https://www.linkedin.com/in/german-fernandez-corrales/')
-            link = '[Linkedin](https://www.linkedin.com/in/german-fernandez-corrales/)'
+            link = '[LinkedIn](https://www.linkedin.com/in/german-fernandez-corrales/)'
             st.markdown(link, unsafe_allow_html=True)
 
         with col_2:
@@ -262,7 +285,7 @@ def main():
             st.subheader('Miguel Nieto')
             # if col_2.button(label = 'Linkedin Miguel', use_container_width= True, ):
             #     webbrowser.open_new_tab('https://www.linkedin.com/in/miguel-nieto-p/')
-            link = '[Linkedin](https://www.linkedin.com/in/miguel-nieto-p/)'
+            link = '[LinkedIn](https://www.linkedin.com/in/miguel-nieto-p/)'
             st.markdown(link, unsafe_allow_html=True)
         
         with col_3:
@@ -271,7 +294,7 @@ def main():
             st.subheader('Sergio Soler')
             # if col_3.button(label = 'Linkedin Sergio', use_container_width= True, ):
             #     webbrowser.open_new_tab('https://www.linkedin.com/in/sergiosolergarcia/')
-            link = '[Linkedin](https://www.linkedin.com/in/sergiosolergarcia/)'
+            link = '[LinkedIn](https://www.linkedin.com/in/sergiosolergarcia/)'
             st.markdown(link, unsafe_allow_html=True)
 
     pass
