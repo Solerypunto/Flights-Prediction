@@ -8,6 +8,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import datetime
 from streamlit_option_menu import option_menu
+from streamlit_lottie import st_lottie
+import requests
 
 ##### Configuracion de la página ###############################################################
 
@@ -30,15 +32,6 @@ streamlit_style = """
 			</style>
 			"""
 st.markdown(streamlit_style, unsafe_allow_html=True)
-# imagenes redondas
-# st.markdown("""
-#             <style type="text/css">
-#             img {
-#             border-radius: 10000px;
-#             }
-#             </style>
-#             """, unsafe_allow_html=True)
-
 
 
 ## DATA ###############################################################
@@ -93,6 +86,9 @@ def main():
 ##### Home ###############################################################
 
     if selected == 'HOME':
+ 
+        st_lottie(requests.get("https://lottie.host/e44dedf0-4f98-49e3-ab19-709275c763ae/zWrhP5d1F7.json").json(), height=300, key="car")
+
         st.header('Predicción en el retraso de los vuelos')
         st.subheader('A partir de dataset de vuelos intra-estadounidenses')
         st. write('''Aquí va una intro del proyecto para que la gente se entere de que va, 
@@ -297,6 +293,15 @@ def main():
             #     webbrowser.open_new_tab('https://www.linkedin.com/in/sergiosolergarcia/')
             link = '[LinkedIn](https://www.linkedin.com/in/sergiosolergarcia/)'
             st.markdown(link, unsafe_allow_html=True)
+
+        # imagenes redondas
+        st.markdown("""
+            <style type="text/css">
+            img {
+            border-radius: 10000px;
+            }
+            </style>
+            """, unsafe_allow_html=True)
 
     pass
 
