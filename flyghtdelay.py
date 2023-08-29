@@ -71,9 +71,12 @@ df_mapa = pd.merge(left=df_mapa, right= df_lat_long, left_on= 'Origin',right_on=
 ##### Cuerpo de la página ###############################################################
 def main():
 
-    st.title('FLIGHT DELAY PREDICTOR')
+    # st.title('FLIGHT DELAY PREDICTOR')
 
     with st.sidebar:
+
+        st_lottie(requests.get("https://lottie.host/e94e8eb0-c1ed-41c3-b6da-b22a5104f594/4sofR9rtYA.json").json(), height=300, key="car")
+
         selected = option_menu(None, ['HOME', 'EDA', 'PREDICTOR', 'ABOUT'], 
             icons=['house', 'bi bi-graph-up','bi bi-airplane','list'], 
             menu_icon="cast", default_index=0, 
@@ -252,8 +255,6 @@ def main():
 ##### Predictor ###############################################################
 
     if selected == 'PREDICTOR':
-
-        st_lottie(requests.get("https://lottie.host/e94e8eb0-c1ed-41c3-b6da-b22a5104f594/4sofR9rtYA.json").json(), height=300, key="car")
 
         st.header('¿Cual es tu vuelo?')
 
