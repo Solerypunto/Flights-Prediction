@@ -105,10 +105,11 @@ def main():
 
         # Mapa vuelos
         
-        ORIGENES = list(df_mapa1['OriginCityName'].unique())
+        ORIGENES = list(df_big['OriginCityName'].dropna().unique())
         ORIGEN = st.multiselect(label = "Ciudad de origen",
-                                  options = ':blue[{ORIGENES}]', 
-                                  default = 'New York, NY',)
+                                  options = ORIGENES, 
+                                  default = 'New York, NY'
+                                )
 
         dfmapapersonalizado = df_mapa1[df_mapa1[['OriginCityName']].isin(ORIGEN)]
         dfmapapersonalizado['DepDelayMinutes'] += 10
@@ -142,6 +143,15 @@ def main():
 ##### EDA ###############################################################
 
     if selected == 'EDA':
+
+        # imagenes redondeadas
+        st.markdown("""
+            <style type="text/css">
+            img {
+            border-radius: 15px;
+            }
+            </style>
+            """, unsafe_allow_html=True)
 
         st_lottie(requests.get("https://lottie.host/e44dedf0-4f98-49e3-ab19-709275c763ae/zWrhP5d1F7.json").json(), height=300, key="airport-eda")
         
@@ -199,7 +209,7 @@ def main():
                             "ActualElapsedTime", "OriginAirportSeqID", "DOT_ID_Operating_Airline", "Quarter", "Tail_NumberIndex","DestAirportSeqID", 
                             "OriginCityMarketID", "OriginIndex", "DayofMonth"]].corr()
             
-            col_a, col_b, col_c = st.columns(1, 2, 1)
+            col_a, col_b, col_c = st.columns([0.5, 2, 0.5])
 
             # with col_a:
             #     st.write('Comprobamos la correlación de las columnas para acotar cuales usaremos en el modelo')
