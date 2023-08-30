@@ -39,9 +39,9 @@ st.markdown(streamlit_style, unsafe_allow_html=True)
 path = "Data/prueba_streamlit.csv"
 df_all = pd.read_csv(path, sep=',', header= 0, )
 
-# # dataset ppal
-# path = "Data/dataset_final.parquet"
-# df_big = pd.read_parquet(path)
+# dataset ppal
+path = "Data/dataset_categorical_10.parquet"
+df_big = pd.read_parquet(path)
 
 # lat long
 path = "Data/dic_lat_long.csv"
