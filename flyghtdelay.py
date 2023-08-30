@@ -94,8 +94,6 @@ def main():
  
         st_lottie(requests.get("https://lottie.host/af7dcf94-5405-4391-90c5-e4cb9f801dbb/ZcNtRXN2y4.json").json(), height=300, key="airport")
 
-        st.dataframe(df_big.sample(100000))
-
         st.header('Predicción en el retraso de los vuelos')
         st.subheader('A partir de dataset de vuelos intra-estadounidenses')
         st. write('''Aquí va una intro del proyecto para que la gente se entere de que va, 
@@ -155,6 +153,8 @@ def main():
         st.write('Para complementar hemos creado las columnas de Latitud y Longitud para hacer gráficas.')
         st.write('''Para graficar, utilizamos una muestra del 1% del dataframe.''')
 
+        st.dataframe(df_big.sample(100000))
+        
         st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
         
         ## Grafica 1
