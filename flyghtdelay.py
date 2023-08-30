@@ -199,7 +199,7 @@ def main():
                             "ActualElapsedTime", "OriginAirportSeqID", "DOT_ID_Operating_Airline", "Quarter", "Tail_NumberIndex","DestAirportSeqID", 
                             "OriginCityMarketID", "OriginIndex", "DayofMonth"]].corr()
             
-            col_a, col_b = st.columns(2)
+            col_a, col_b, col_c = st.columns(1, 2, 1)
 
             # with col_a:
             #     st.write('Comprobamos la correlación de las columnas para acotar cuales usaremos en el modelo')
