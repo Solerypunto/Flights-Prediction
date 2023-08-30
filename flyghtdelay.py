@@ -35,9 +35,13 @@ st.markdown(streamlit_style, unsafe_allow_html=True)
 
 
 ## DATA ###############################################################
-# dataset ppal
+# dataset prueba
 path = "Data/prueba_streamlit.csv"
 df_all = pd.read_csv(path, sep=',', header= 0, )
+
+# dataset ppal
+path = "Data/dataset_final.parquet.parquet"
+df_big = pd.read_parquet(path)
 
 # lat long
 path = "Data/dic_lat_long.csv"
@@ -89,6 +93,8 @@ def main():
     if selected == 'HOME':
  
         st_lottie(requests.get("https://lottie.host/af7dcf94-5405-4391-90c5-e4cb9f801dbb/ZcNtRXN2y4.json").json(), height=300, key="airport")
+
+        st.dataframe(df_big)
 
         st.header('Predicción en el retraso de los vuelos')
         st.subheader('A partir de dataset de vuelos intra-estadounidenses')
