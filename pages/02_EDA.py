@@ -48,7 +48,7 @@ df_mapa1 = df_mapa1.dropna()
 # df Mapa 2 y 3
 df_mapa = pd.DataFrame(df_big_mapa.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index())
 df_mapa = df_mapa.round(1)
-# df_mapa = pd.merge(left=df_mapa, right= df_lat_long, left_on= 'Origin',right_on='IATA',)
+df_mapa = pd.merge(left=df_mapa, right= df_lat_long, left_on= 'Origin',right_on='IATA',)
 
 #####################################################################################################################
 
