@@ -166,7 +166,7 @@ def main():
         
         st.markdown('_____')
 
-        st.dataframe(df_big.sample(100000))
+        st.dataframe(df_big)
 
         st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
         
