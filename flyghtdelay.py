@@ -35,9 +35,13 @@ st.markdown(streamlit_style, unsafe_allow_html=True)
 
 
 ## DATA ###############################################################
-# dataset ppal
+# dataset prueba
 path = "Data/prueba_streamlit.csv"
 df_all = pd.read_csv(path, sep=',', header= 0, )
+
+# # dataset ppal
+# path = "Data/dataset_final.parquet"
+# df_big = pd.read_parquet(path)
 
 # lat long
 path = "Data/dic_lat_long.csv"
@@ -90,6 +94,8 @@ def main():
  
         st_lottie(requests.get("https://lottie.host/af7dcf94-5405-4391-90c5-e4cb9f801dbb/ZcNtRXN2y4.json").json(), height=300, key="airport")
 
+        st.dataframe(df_big.sample(100000))
+
         st.header('Predicción en el retraso de los vuelos')
         st.subheader('A partir de dataset de vuelos intra-estadounidenses')
         st. write('''Aquí va una intro del proyecto para que la gente se entere de que va, 
@@ -103,10 +109,10 @@ def main():
         
         ORIGENES = list(df_mapa1['OriginCityName'].unique())
         ORIGEN = st.multiselect(label = "Ciudad de origen",
-                                  options = ORIGENES, 
-                                  default = 'New York, NY')
+                                  options = ':blue[{ORIGENES}]', 
+                                  default = 'New York, NY',)
 
-        dfmapapersonalizado = df_mapa1[df_mapa1['OriginCityName'].isin(ORIGEN)]
+        dfmapapersonalizado = df_mapa1[df_mapa1[['OriginCityName']].isin(ORIGEN)]
         dfmapapersonalizado['DepDelayMinutes'] += 10
 
         Y_RGB = [255, 255, 0, 40]
