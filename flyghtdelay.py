@@ -154,7 +154,7 @@ def main():
         st.write('''Para graficar, utilizamos una muestra del 1% del dataframe.''')
 
         st.dataframe(df_big.sample(100000))
-        
+
         st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
         
         ## Grafica 1
@@ -165,17 +165,16 @@ def main():
 
         # with col_a: 
         #     st.dataframe(df_all.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index(),use_container_width=True)
+                                         
+        dfimpresionante = df_big.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index()
 
-        with col_b:                                           
-            dfimpresionante = df_all.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index()
+        fig = px.scatter(dfimpresionante,
+                x = 'Origin',
+                y = "mean",
+                size = dfimpresionante['max']+20,
+                color = 'Origin')
 
-            fig = px.scatter(dfimpresionante,
-                    x = 'Origin',
-                    y = "mean",
-                    size = dfimpresionante['max']+20,
-                    color = 'Origin')
-
-            st.plotly_chart(fig, theme='streamlit', use_container_width=True)
+        st.plotly_chart(fig, theme='streamlit', use_container_width=True)
         
 
         st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
