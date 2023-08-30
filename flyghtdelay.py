@@ -40,7 +40,7 @@ path = "Data/prueba_streamlit.csv"
 df_all = pd.read_csv(path, sep=',', header= 0, )
 
 # dataset ppal
-path = "Data/dataset_categorical_10.parquet"
+path = "Data/dataset_categorical_001.parquet"
 df_big = pd.read_parquet(path)
 
 # lat long
