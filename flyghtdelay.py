@@ -153,6 +153,8 @@ def main():
 
         st.write('''Para complementar hemos creado las columnas de Latitud y Longitud para hacer gráficas.\n
                  Para graficar, utilizamos una muestra del 1% del dataframe.''')
+        
+        st.markdown('_____')
 
         st.dataframe(df_big.sample(100000))
 
