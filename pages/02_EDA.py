@@ -1,12 +1,10 @@
 import streamlit as st
-import webbrowser
 import pandas as pd
 import numpy as np
 import pydeck as pdk
 import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
-import datetime
 from streamlit_option_menu import option_menu
 from streamlit_lottie import st_lottie
 import requests
@@ -16,6 +14,15 @@ import requests
 st.set_page_config(page_title= 'Flight delay predictor',
                    page_icon= ':airplane_departure:',
                    initial_sidebar_state= 'expanded', layout= 'wide',)
+
+# imagenes redondeadas
+st.markdown("""
+    <style type="text/css">
+    img {
+    border-radius: 15px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
 ## DATA ###############################################################
 # dataset prueba
@@ -78,16 +85,16 @@ col_a, col_b = st.columns([1,2])
 # with col_a: 
 #     st.dataframe(df_all.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index(),use_container_width=True)
 
-with col_b:                                           
-    dfimpresionante = df_all.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index()
+                                          
+dfimpresionante = df_all.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index()
 
-    fig = px.scatter(dfimpresionante,
-            x = 'Origin',
-            y = "mean",
-            size = dfimpresionante['max']+20,
-            color = 'Origin')
+fig = px.scatter(dfimpresionante,
+        x = 'Origin',
+        y = "mean",
+        size = dfimpresionante['max']+20,
+        color = 'Origin')
 
-    st.plotly_chart(fig, theme='streamlit', use_container_width=True)
+st.plotly_chart(fig, theme='streamlit', use_container_width=True)
 
 
 st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
@@ -104,7 +111,7 @@ with contenedor:
                             'IATA_Code_Operating_Airline', 'Tail_Number', 'OriginCityName', 'OriginState', 'OriginStateName',
                             'DestCityName', 'DestState', 'DestStateName', 'ArrTimeBlk', 'DepTimeBlk', 'Year', 'Quarter', 'Month'], axis= 1).sample(frac=0.01).corr()
     
-    col_a, col_b = st.columns(2)
+    col_a, col_b, col_c = st.columns([0.5, 2, 0.5])
 
     # with col_a:
     #     st.write('Comprobamos la correlación de las columnas para acotar cuales usaremos en el modelo')
@@ -119,8 +126,6 @@ with contenedor:
 st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 ## Mapa 3D
-
-st.dataframe(df_big_mapa)
 
 st.subheader('Mapa Retrasos')
 st.write('En este mapa podemos ver la media de los retrasos en los aeropuertos de EUA. \n A mayor retraso, mas altura en la columna')
