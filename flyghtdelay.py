@@ -76,7 +76,10 @@ st.markdown(streamlit_style, unsafe_allow_html=True)
 def main():
 
     # st.title('FLIGHT DELAY PREDICTOR')
-    st.sidebar.title('Predictor de retraso de vuelo')
+    sidebar = st.sidebar()
+
+    with sidebar:
+        st.title('FLIGHT DELAY PREDICTOR')
 
     # with st.sidebar:
 
