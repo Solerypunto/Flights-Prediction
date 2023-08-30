@@ -15,6 +15,20 @@ st.set_page_config(page_title= 'Flight delay predictor',
                    page_icon= ':airplane_departure:',
                    initial_sidebar_state= 'expanded', layout= 'wide',)
 
+## CSS ###############################################################   
+# tipografia   
+streamlit_style = """
+			<style>
+			@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@700&display=swap');
+
+			html, body, [class*="css"]  {
+			font-family: 'Space Mono', sans-serif;
+
+			}
+			</style>
+			"""
+st.markdown(streamlit_style, unsafe_allow_html=True)
+
 # imagenes redondeadas
 st.markdown("""
     <style type="text/css">

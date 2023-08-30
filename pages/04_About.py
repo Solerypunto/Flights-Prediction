@@ -1,12 +1,4 @@
 import streamlit as st
-import webbrowser
-import pandas as pd
-import numpy as np
-import pydeck as pdk
-import plotly.express as px
-import matplotlib.pyplot as plt
-import seaborn as sns
-import datetime
 from streamlit_option_menu import option_menu
 from streamlit_lottie import st_lottie
 import requests
