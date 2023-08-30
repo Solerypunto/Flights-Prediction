@@ -43,34 +43,34 @@ df_all = pd.read_csv(path, sep=',', header= 0, )
 path = "Data/dataset_categorical_001.parquet"
 df_big = pd.read_parquet(path)
 
-# lat long
-path = "Data/dic_lat_long.csv"
-df_lat_long = pd.read_csv(path, sep=',', header= 0, )
-path = 'Data/airports.csv'
-airports_lat_long = pd.read_csv(path, sep=',', header= 0, )
-airports_lat_long = airports_lat_long.drop(["AIRPORT", "CITY", "STATE", "COUNTRY"],axis=1)
-df_lat_long = pd.concat([airports_lat_long,df_lat_long],axis=0)
+# # lat long
+# path = "Data/dic_lat_long.csv"
+# df_lat_long = pd.read_csv(path, sep=',', header= 0, )
+# path = 'Data/airports.csv'
+# airports_lat_long = pd.read_csv(path, sep=',', header= 0, )
+# airports_lat_long = airports_lat_long.drop(["AIRPORT", "CITY", "STATE", "COUNTRY"],axis=1)
+# df_lat_long = pd.concat([airports_lat_long,df_lat_long],axis=0)
 
-# df Mapa 1
-# Generamos un df con la columna 'Origin' para despues añadir las latitudes y longitudes de del origen
-df_mapa1 = df_all[['Origin', 'OriginCityName']]
-df_mapa1 = pd.merge(left=df_mapa1, right= df_lat_long, left_on= 'Origin',right_on='IATA',)
-df_mapa1 = df_mapa1.drop('IATA',axis=1)
-# Generamos un df con la columna 'Dest' para despues añadir las latitudes y longitudes de del destino. 
-# Luego cambiamos nombres a las columnas de latitud y longitud
-df_mapa11 = df_all[['Dest', 'DestCityName', 'DepDelayMinutes']]
-df_mapa11 = pd.merge(left=df_mapa11, right= df_lat_long, left_on= 'Dest',right_on='IATA',)
-df_mapa11 = df_mapa11.drop('IATA',axis=1)
-df_mapa11 = df_mapa11.rename(columns= {'LATITUDE':'LATITUDEdest','LONGITUDE': 'LONGITUDEdest'},)
-# Unimos ambos df (y borramos el df sobrante de la memoria)
-df_mapa1 = pd.merge(left=df_mapa1, right= df_mapa11, left_index= True, right_index= True,)
-del df_mapa11
-df_mapa1 = df_mapa1.dropna()
+# # df Mapa 1
+# # Generamos un df con la columna 'Origin' para despues añadir las latitudes y longitudes de del origen
+# df_mapa1 = df_all[['Origin', 'OriginCityName']]
+# df_mapa1 = pd.merge(left=df_mapa1, right= df_lat_long, left_on= 'Origin',right_on='IATA',)
+# df_mapa1 = df_mapa1.drop('IATA',axis=1)
+# # Generamos un df con la columna 'Dest' para despues añadir las latitudes y longitudes de del destino. 
+# # Luego cambiamos nombres a las columnas de latitud y longitud
+# df_mapa11 = df_all[['Dest', 'DestCityName', 'DepDelayMinutes']]
+# df_mapa11 = pd.merge(left=df_mapa11, right= df_lat_long, left_on= 'Dest',right_on='IATA',)
+# df_mapa11 = df_mapa11.drop('IATA',axis=1)
+# df_mapa11 = df_mapa11.rename(columns= {'LATITUDE':'LATITUDEdest','LONGITUDE': 'LONGITUDEdest'},)
+# # Unimos ambos df (y borramos el df sobrante de la memoria)
+# df_mapa1 = pd.merge(left=df_mapa1, right= df_mapa11, left_index= True, right_index= True,)
+# del df_mapa11
+# df_mapa1 = df_mapa1.dropna()
 
-# df Mapa 2 y 3
-df_mapa = pd.DataFrame(df_all.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index())
-df_mapa = df_mapa.round(1)
-df_mapa = pd.merge(left=df_mapa, right= df_lat_long, left_on= 'Origin',right_on='IATA',)
+# # df Mapa 2 y 3
+# df_mapa = pd.DataFrame(df_all.groupby("Origin").agg(**{'max':('DepDelay','max'),'mean':('DepDelay','mean')}).reset_index())
+# df_mapa = df_mapa.round(1)
+# df_mapa = pd.merge(left=df_mapa, right= df_lat_long, left_on= 'Origin',right_on='IATA',)
 
 ##### Cuerpo de la página ###############################################################
 def main():
@@ -238,7 +238,7 @@ def main():
                                                                   zoom=2.6,
                                                                   pitch=50,),
                                  layers=[pdk.Layer("ColumnLayer",
-                                                    data=df_mapa,
+                                                    data=df_big,
                                                     get_position='[LONGITUDE,LATITUDE]',
                                                     get_elevation='mean',
                                                     radius=30000,
@@ -259,7 +259,7 @@ def main():
                                                                   zoom=2.6,
                                                                   pitch=0,),
                                  layers=[pdk.Layer("HeatmapLayer",
-                                                    data=df_mapa,
+                                                    data=df_big,
                                                     get_position='[LONGITUDE,LATITUDE]',
                                                     aggregation='mean',
                                                     get_weight='max',
