@@ -189,7 +189,7 @@ def main():
 
             st.subheader('Matriz de correlación')
 
-            corre = df_all.drop(['FlightDate', 'Airline', 'Origin', 'Dest', 'Cancelled', 'Diverted', 'Marketing_Airline_Network', 
+            corre = df_big.drop(['FlightDate', 'Airline', 'Origin', 'Dest', 'Diverted', 'Marketing_Airline_Network', 
                                     'Operated_or_Branded_Code_Share_Partners', 'IATA_Code_Marketing_Airline', 'Operating_Airline', 
                                     'IATA_Code_Operating_Airline', 'Tail_Number', 'OriginCityName', 'OriginState', 'OriginStateName',
                                     'DestCityName', 'DestState', 'DestStateName', 'ArrTimeBlk', 'DepTimeBlk', 'Year', 'Quarter', 'Month'], axis= 1).sample(frac=0.01).corr()
