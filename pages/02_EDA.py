@@ -11,6 +11,12 @@ from streamlit_option_menu import option_menu
 from streamlit_lottie import st_lottie
 import requests
 
+##### Configuracion de la página ###############################################################
+
+st.set_page_config(page_title= 'Flight delay predictor',
+                   page_icon= ':airplane_departure:',
+                   initial_sidebar_state= 'expanded', layout= 'wide',)
+
 ## DATA ###############################################################
 # dataset prueba
 path = "Data/prueba_streamlit.csv"
