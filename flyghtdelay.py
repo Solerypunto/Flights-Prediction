@@ -94,7 +94,7 @@ def main():
  
         st_lottie(requests.get("https://lottie.host/af7dcf94-5405-4391-90c5-e4cb9f801dbb/ZcNtRXN2y4.json").json(), height=300, key="airport")
 
-        st.dataframe(df_big)
+        st.dataframe(df_big.sample(100000))
 
         st.header('Predicción en el retraso de los vuelos')
         st.subheader('A partir de dataset de vuelos intra-estadounidenses')
