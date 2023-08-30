@@ -107,11 +107,11 @@ def main():
         
         ORIGENES = list(df_big['OriginCityName'].head(200).unique())
         ORIGEN = st.multiselect(label = "Ciudad de origen",
-                                  options = ORIGENES, 
-                                  default = 'New York, NY'
+                                options = ORIGENES, 
+                                default = 'New York, NY'
                                 )
 
-        dfmapapersonalizado = df_mapa1[df_mapa1[['OriginCityName']].isin(ORIGEN)]
+        dfmapapersonalizado = df_big[df_big[['OriginCityName']].isin(ORIGEN)]
         # dfmapapersonalizado['DepDelayMinutes'] += 10
 
         Y_RGB = [255, 255, 0, 40]
