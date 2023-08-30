@@ -189,10 +189,15 @@ def main():
 
             st.subheader('Matriz de correlación')
 
-            corre = df_big.drop(['Origin', 'FlightDate', 'Airline', 'Dest', 'Cancelled', 'Diverted', 'Marketing_Airline_Network', 
-                                    'Operated_or_Branded_Code_Share_Partners', 'IATA_Code_Marketing_Airline', 'Operating_Airline', 
-                                    'IATA_Code_Operating_Airline', 'Tail_Number', 'OriginCityName', 'OriginState', 'OriginStateName',
-                                    'DestCityName', 'DestState', 'DestStateName', 'ArrTimeBlk', 'DepTimeBlk', 'Year', 'Quarter', 'Month'], axis= 1).corr()
+            # corre = df_big.drop(['Origin', 'FlightDate', 'Airline', 'Dest', 'Cancelled', 'Diverted', 'Marketing_Airline_Network', 
+            #                         'Operated_or_Branded_Code_Share_Partners', 'IATA_Code_Marketing_Airline', 'Operating_Airline', 
+            #                         'IATA_Code_Operating_Airline', 'Tail_Number', 'OriginCityName', 'OriginState', 'OriginStateName',
+            #                         'DestCityName', 'DestState', 'DestStateName', 'ArrTimeBlk', 'DepTimeBlk', 'Year', 'Quarter', 'Month', 'CancelledIndex'], axis= 1).corr()
+            
+            corre = df_big[["DestStateNameIndex", "TaxiOut", "DepTimeBlkIndex", "WheelsOff", "DestWac", "AirTime", "CRSElapsedTime", "Operating_AirlineIndex",
+                            "Month", "OriginStateNameIndex", "Flight_Number_Operating_Airline", "WheelsOn", "AirlineIndex", "DOT_ID_Marketing_Airline",
+                            "ActualElapsedTime", "OriginAirportSeqID", "DOT_ID_Operating_Airline", "Quarter", "Tail_NumberIndex","DestAirportSeqID", 
+                            "OriginCityMarketID", "OriginIndex", "DayofMonth"]]
             
             col_a, col_b = st.columns(2)
 
