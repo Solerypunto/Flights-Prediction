@@ -105,14 +105,14 @@ def main():
 
         # Mapa vuelos
         
-        ORIGENES = list(df_big['OriginCityName'].dropna().unique())
+        ORIGENES = list(df_big['OriginCityName'].head(200).unique())
         ORIGEN = st.multiselect(label = "Ciudad de origen",
                                   options = ORIGENES, 
                                   default = 'New York, NY'
                                 )
 
         dfmapapersonalizado = df_mapa1[df_mapa1[['OriginCityName']].isin(ORIGEN)]
-        dfmapapersonalizado['DepDelayMinutes'] += 10
+        # dfmapapersonalizado['DepDelayMinutes'] += 10
 
         Y_RGB = [255, 255, 0, 40]
         G_RGB = [56, 191, 140, 40]
