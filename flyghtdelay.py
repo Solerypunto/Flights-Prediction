@@ -151,8 +151,9 @@ def main():
         st.subheader('Dataset')
         st.write('''El dataset contiene multiples documentos, se pueden agrupar en datos en crudo y datos ya ordenados, Optamos por quedarnos con los ordenados:
                 6 documentos. Optamos por el formato *.parquet porque es mas ligero que *.csv \n
-                 Tamaño total del dataset: 29.193.782 x 61''')
-        st.write('Para complementar hemos creado las columnas de Latitud y Longitud para hacer gráficas')
+                 Tamaño total del dataset: 29.193.782 filas x 61 columnas''')
+        st.write('Para complementar hemos creado las columnas de Latitud y Longitud para hacer gráficas.')
+        st.write('Para graficar, utilizamos una muestra del 1'%' del dataframe.')
 
         st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
         
