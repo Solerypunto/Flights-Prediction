@@ -119,11 +119,11 @@ contenedor = st.container()
 with contenedor:
 
     st.subheader('Matriz de correlación')
-
-    corre = df_all.drop(['FlightDate', 'Airline', 'Origin', 'Dest', 'Cancelled', 'Diverted', 'Marketing_Airline_Network', 
-                            'Operated_or_Branded_Code_Share_Partners', 'IATA_Code_Marketing_Airline', 'Operating_Airline', 
-                            'IATA_Code_Operating_Airline', 'Tail_Number', 'OriginCityName', 'OriginState', 'OriginStateName',
-                            'DestCityName', 'DestState', 'DestStateName', 'ArrTimeBlk', 'DepTimeBlk', 'Year', 'Quarter', 'Month'], axis= 1).sample(frac=0.01).corr()
+    
+    corre = df_big[["DestStateNameIndex", "TaxiOut", "DepTimeBlkIndex", "WheelsOff", "DestWac", "AirTime", "CRSElapsedTime", "Operating_AirlineIndex",
+                    "Month", "OriginStateNameIndex", "Flight_Number_Operating_Airline", "WheelsOn", "AirlineIndex", "DOT_ID_Marketing_Airline",
+                    "ActualElapsedTime", "OriginAirportSeqID", "DOT_ID_Operating_Airline", "Quarter", "Tail_NumberIndex", "DestAirportSeqID", 
+                    "OriginCityMarketID", "OriginIndex", "DayofMonth"]].corr()
     
     col_a, col_b, col_c = st.columns([0.5, 2, 0.5])
 
