@@ -35,6 +35,10 @@ st.markdown(streamlit_style, unsafe_allow_html=True)
 
 
 ## DATA ###############################################################
+
+path = "Data/dataset_1Mx8_streamlit.parquet"
+df_mapa_vuelos = pd.read_parquet(path)
+
 ## dataset prueba
 # path = "Data/prueba_streamlit.csv"
 # df_all = pd.read_csv(path, sep=',', header= 0, )
@@ -104,16 +108,18 @@ def main():
                 aquí va una intro del proyecto para que la gente se entere de que va, ''')
     st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
-    # # Mapa vuelos
+    # Mapa vuelos
     
-    # ORIGENES = list(df_big['OriginCityName'].head(200).unique())
+    st.dataframe(df_mapa_vuelos)
+
+    # ORIGENES = list(df_mapa_vuelos['OriginCityName'].head(200).unique())
     # ORIGEN = st.multiselect(label = "Ciudad de origen",
     #                         options = ORIGENES, 
-    #                         default = 'New York, NY'
+    #                         # default = 'New York, NY'
     #                         )
 
-    # dfmapapersonalizado = df_big[df_big[['OriginCityName']].isin(ORIGEN)]
-    # # dfmapapersonalizado['DepDelayMinutes'] += 10
+    # dfmapapersonalizado = df_mapa_vuelos[df_mapa_vuelos[['OriginCityName']].isin(ORIGEN)]
+    # dfmapapersonalizado['DepDelayMinutes'] += 10
 
     # Y_RGB = [255, 255, 0, 40]
     # G_RGB = [56, 191, 140, 40]
