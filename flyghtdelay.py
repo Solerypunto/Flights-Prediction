@@ -112,6 +112,7 @@ def main():
     
     st.dataframe(df_mapa_vuelos)
 
+
     # ORIGENES = list(df_mapa_vuelos['OriginCityName'].head(200).unique())
     # ORIGEN = st.multiselect(label = "Ciudad de origen",
     #                         options = ORIGENES, 
