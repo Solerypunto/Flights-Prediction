@@ -172,7 +172,7 @@ month = fechavuelo.month
 quarter = (fechavuelo.month - 1) // 3 + 1
 estadodestino = df[df['Dest']==a_dest]['DestStateName'].unique()[0]
 estadodestinoindex = df[df['Dest']==a_dest]['DestStateIndex'].unique()[0]
-des_wac = df[df['DestStateIndex']==estadodestino]['DestWac'].unique()[0]
+des_wac = df[df['DestStateIndex']==estadodestinoindex]['DestWac'].unique()[0]
 operating_airline = df[df['Airline']==Aerolinea]["Operating_AirlineIndex"].unique()[0]
 airline_index = df[df['Airline']==Aerolinea]["AirlineIndex"].unique()[0]
 originstateindex = df[df['Origin']==aeropuertoorigen]['OriginStateNameIndex'].unique()[0]
