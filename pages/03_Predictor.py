@@ -9,15 +9,20 @@ import datetime
 from streamlit_option_menu import option_menu
 from streamlit_lottie import st_lottie
 import requests
-import random
 import json
 import math
+import pickle as pkl
+from keras.models import load_model
+from sklearn.preprocessing import MinMaxScaler
+import tensorflow
 
 ##### Configuracion de la página ###############################################################
 
 st.set_page_config(page_title= 'Flight delay predictor',
                    page_icon= ':airplane_departure:',
                    initial_sidebar_state= 'expanded', layout= 'centered',)
+
+
 
 ## CSS ###############################################################   
 # tipografia   
@@ -34,9 +39,6 @@ streamlit_style = """
 st.markdown(streamlit_style, unsafe_allow_html=True)
 
 
-
-
-
 ### Data ##########################################
 
 path = "Data/dataset_categorical_001.parquet"
@@ -51,15 +53,11 @@ with open(path, mode='r') as file:
 dfwac = pd.DataFrame(wac,columns=['key', 'values'])
 
 
-
-
-
 ##### Predictor ###############################################################
 
 st_lottie(requests.get("https://lottie.host/e94e8eb0-c1ed-41c3-b6da-b22a5104f594/4sofR9rtYA.json").json(), height=200, key="paperplane")
 
 st.header('¿Cual es tu vuelo?')
-
 
 ### Imputs usuario
 ## Fecha
@@ -70,6 +68,7 @@ franjahora = st.select_slider(label='Franja horaria', options=sorted(['0900-0959
                                                                '0800-0859', '1300-1359', '1600-1659', '1200-1259', '0700-0759',
                                                                '1400-1459', '0600-0659', '1700-1759', '2000-2059', '0001-0559',
                                                                '1900-1959', '1800-1859', '2100-2159', '2300-2359']))
+
 st.divider()
 
 
@@ -84,7 +83,6 @@ if len(aeropuerto) > 1:
     aeropuertoorigen = st.selectbox(label='Aeropuerto', options= aeropuerto)
 else:
     aeropuertoorigen = aeropuerto[0]
-
 
 st.divider()
 
@@ -166,26 +164,6 @@ st.subheader('''Tu vuelo \n
                                              a_dest, fechavuelo, round(distance, 2), round(tiempovuelo, 2), 
                                              round(tiempoaire, 2)))
 
-
-## AirTime =  distancia recorrida(distancia entre origen y destino) / velocidad. In minutes
-# CRSElapsedTime = tiempo programado que el avion está en el aire. In minutes
-# ActualElapsedTime =Actual time an airplane spends in the air, as opposed to time spent. In minutes
-
-columnas = ["DepTimeBlkIndex", "Month", "DayofMonth", "Quarter", 
-            "OriginIndex", "OriginAirportSeqID", "OriginStateNameIndex", "OriginCityMarketID", 
-            "DestAirportSeqID", "DestStateNameIndex", "DestWac", 
-            "Operating_AirlineIndex", "AirlineIndex", "Flight_Number_Operating_Airline", "DOT_ID_Operating_Airline", "DOT_ID_Marketing_Airline", 
-            "Tail_NumberIndex", "TaxiOut", "WheelsOff", "WheelsOn", 
-            "AirTime", "CRSElapsedTime", "ActualElapsedTime",]
-
-# columnasmodelo = ["DestStateNameIndex", "TaxiOut", "DepTimeBlkIndex", "WheelsOff",
-#        "DestWac", "AirTime", "CRSElapsedTime", "Operating_AirlineIndex",
-#        "Month", "OriginStateNameIndex", "Flight_Number_Operating_Airline",
-#        "WheelsOn", "AirlineIndex", "DOT_ID_Marketing_Airline",
-#        "ActualElapsedTime", "OriginAirportSeqID",
-#        "DOT_ID_Operating_Airline", "Quarter", "Tail_NumberIndex",
-#        "DestAirportSeqID", "OriginCityMarketID", "OriginIndex", "DayofMonth"]
-
 # Generamos Variables
 
 dayofmonth = fechavuelo.day
@@ -205,10 +183,26 @@ Origin_ID = df[df['Origin']==aeropuertoorigen]['OriginIndex'].unique()[0]
 franjahoraindex = df[df['DepTimeBlk']==franjahora]['DepTimeBlkIndex'].unique()[0]
 tailid = df[df['Tail_Number']==tail_number]['Tail_NumberIndex'].unique()[0]
 
-
-vector = [estadodestino, taxi_out, franjahoraindex, wheels_off, float(des_wac), tiempoaire*60, tiempovuelo*60, operating_airline, month, originstateindex, 
+### PREDICCION
+## generamos el vectotr
+X = [estadodestino, taxi_out, franjahoraindex, wheels_off, float(des_wac), tiempoaire*60, tiempovuelo*60, operating_airline, month, originstateindex, 
                   float(Numero_vuelo),float(wheels_on), airline_index, float(dot_id), tiempodevueloreal*60, float(OriginSeq), float(dot_id_operating), 
                   quarter, tailid, float(DestSeq), float(OriginCityMarket), Origin_ID, dayofmonth]
 
-st.write(vector)
+# Escaladores
+# X_scaler = MinMaxScaler()
+# y_scaler = MinMaxScaler()
 
+with open('Data/X_scaler_NO.pkl', 'br')as f:
+    X_scaler = pkl.load(f)
+
+with open('Data/y_scaler_NO.pkl', 'br')as f:
+    y_scaler = pkl.load(f)
+
+# Modelo
+model = load_model('Data/regression_model_2_NO.keras')
+
+# Escalamos X
+X = X_scaler.transform(X)
+
+st.write(X)
