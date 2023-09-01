@@ -209,8 +209,8 @@ blktime_2 = (datetime.datetime.strptime(str(franjahora.split('-')[1]), "%H%M") +
 wheels_off = random.choice([blktime_1, blktime_2])
 st.write(type(tiempoaire))
 wheels_on = wheels_off + datetime.timedelta(hours = (int(usos_horarios.get(estadoorigen)) - int(usos_horarios.get(estadodestino))), minutes = int(tiempoaire*60))
-wheels_off = datetime.time.strftime(wheels_off.time(),'%H%M')
-wheels_on = datetime.time.strftime(wheels_on.time(),'%H%M')
+wheels_off = int(datetime.time.strftime(wheels_off.time(),'%H%M'))
+wheels_on = int(datetime.time.strftime(wheels_on.time(),'%H%M'))
 st.write(wheels_off)
 st.write(wheels_on)
 
