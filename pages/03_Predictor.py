@@ -207,7 +207,7 @@ blktime_1 = datetime.datetime.strptime(str(int(franjahora.split('-')[1]) - rando
 blktime_2 = (datetime.datetime.strptime(str(franjahora.split('-')[1]), "%H%M") + datetime.timedelta(minutes=random.randint(0, 59))).time()
 wheels_off = random.choice([blktime_1, blktime_2])
 st.write(type(tiempoaire))
-wheels_on = wheels_off + datetime.timedelta(hours = (usos_horarios.get(estadoorigen) - usos_horarios.get(estadodestino) + tiempoaire))
+wheels_on = wheels_off + datetime.timedelta(hours = (usos_horarios.get(estadoorigen) - usos_horarios.get(estadodestino)), minutes = int(tiempoaire*60))
 st.write(wheels_on)
 
 # WheelsOn = WheelsOff + HusoHorario + Airtime
