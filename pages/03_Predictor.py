@@ -210,8 +210,6 @@ wheels_off = random.choice([blktime_1, blktime_2])
 wheels_on = wheels_off + datetime.timedelta(hours = (int(usos_horarios.get(estadoorigen)) - int(usos_horarios.get(estadodestino))), minutes = int(tiempoaire*60))
 wheels_off = int(datetime.time.strftime(wheels_off.time(),'%H%M'))
 wheels_on = int(datetime.time.strftime(wheels_on.time(),'%H%M'))
-st.write(wheels_off)
-st.write(wheels_on)
 
 ### PREDICCION
 ## generamos el vectotr
@@ -241,9 +239,9 @@ y = y_scaler.inverse_transform(yhat)
 
 
 if y[0] < 0:
-    st.header(f'Su vuelo se adelanta: {str(round(abs(y[0][0]),2))} minutos' )
+    st.header(f'Su vuelo se adelanta: {str(round(abs(y[0][0])))} minutos' )
 else:
-    st.header(f'Su vuelo se atrasa: {str(round(y[0][0], 2))} minutos' )
+    st.header(f'Su vuelo se atrasa: {str(round(y[0][0]))} minutos' )
 
 
 
