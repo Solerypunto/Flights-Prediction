@@ -170,7 +170,8 @@ st.subheader('''Tu vuelo \n
 dayofmonth = fechavuelo.day
 month = fechavuelo.month
 quarter = (fechavuelo.month - 1) // 3 + 1
-estadodestino = df[df['Dest']==a_dest]['DestStateIndex'].unique()[0]
+estadodestino = df[df['Dest']==a_dest]['DestStateName'].unique()[0]
+estadodestinoindex = df[df['Dest']==a_dest]['DestStateIndex'].unique()[0]
 des_wac = df[df['DestStateIndex']==estadodestino]['DestWac'].unique()[0]
 operating_airline = df[df['Airline']==Aerolinea]["Operating_AirlineIndex"].unique()[0]
 airline_index = df[df['Airline']==Aerolinea]["AirlineIndex"].unique()[0]
@@ -207,7 +208,7 @@ blktime_1 = datetime.datetime.strptime(str(int(franjahora.split('-')[1]) - rando
 blktime_2 = (datetime.datetime.strptime(str(franjahora.split('-')[1]), "%H%M") + datetime.timedelta(minutes=random.randint(0, 59))).time()
 wheels_off = random.choice([blktime_1, blktime_2])
 st.write(type(tiempoaire))
-wheels_on = wheels_off + datetime.timedelta(hours = (usos_horarios.get(estadoorigen) - usos_horarios.get(estadodestino)), minutes = int(tiempoaire*60))
+wheels_on = wheels_off + datetime.timedelta(hours = (int(usos_horarios.get(estadoorigen)) - int(usos_horarios.get(estadodestino))), minutes = int(tiempoaire*60))
 st.write(wheels_on)
 
 # WheelsOn = WheelsOff + HusoHorario + Airtime
@@ -215,7 +216,7 @@ st.write(wheels_on)
 
 ### PREDICCION
 ## generamos el vectotr
-X = [[estadodestino, taxi_out, franjahoraindex, wheels_off, float(des_wac), tiempoaire*60, tiempovuelo*60, operating_airline, month, originstateindex, 
+X = [[estadodestinoindex, taxi_out, franjahoraindex, wheels_off, float(des_wac), tiempoaire*60, tiempovuelo*60, operating_airline, month, originstateindex, 
                   float(Numero_vuelo),float(wheels_on), airline_index, float(dot_id), tiempodevueloreal*60, float(OriginSeq), float(dot_id_operating), 
                   quarter, tailid, float(DestSeq), float(OriginCityMarket), Origin_ID, dayofmonth]]
 
