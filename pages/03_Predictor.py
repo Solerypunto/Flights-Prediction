@@ -207,7 +207,6 @@ usos_horarios= {'Hawaii': uso_1, 'Alasca': uso_2, 'Washington': uso_3, 'Oregon':
 blktime_1 = datetime.datetime.strptime(str(int(franjahora.split('-')[1]) - random.randint(0, 59)), "%H%M")
 blktime_2 = (datetime.datetime.strptime(str(franjahora.split('-')[1]), "%H%M") + datetime.timedelta(minutes=random.randint(0, 59)))
 wheels_off = random.choice([blktime_1, blktime_2])
-st.write(type(tiempoaire))
 wheels_on = wheels_off + datetime.timedelta(hours = (int(usos_horarios.get(estadoorigen)) - int(usos_horarios.get(estadodestino))), minutes = int(tiempoaire*60))
 wheels_off = int(datetime.time.strftime(wheels_off.time(),'%H%M'))
 wheels_on = int(datetime.time.strftime(wheels_on.time(),'%H%M'))
@@ -239,6 +238,8 @@ yhat = model.predict(X)
 
 #Reescalamos
 y = y_scaler.inverse_transform(yhat)
+
+st.write(y)
 
 
 
