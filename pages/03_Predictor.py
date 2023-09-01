@@ -241,9 +241,9 @@ y = y_scaler.inverse_transform(yhat)
 
 
 if y[0] < 0:
-    st.header(f'Su vuelo se adelanta: {y[0]} minutos' )
+    st.header(f'Su vuelo se adelanta: {str(y[0])} minutos' )
 else:
-    st.header(f'Su vuelo se atrasa: {y[0]} minutos' )
+    st.header(f'Su vuelo se atrasa: {str(y[0])} minutos' )
 
 
 
