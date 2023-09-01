@@ -14,7 +14,7 @@ import math
 import pickle as pkl
 from keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
-import tensorflow
+import tensorflow as tf
 
 ##### Configuracion de la página ###############################################################
 
@@ -185,13 +185,11 @@ tailid = df[df['Tail_Number']==tail_number]['Tail_NumberIndex'].unique()[0]
 
 ### PREDICCION
 ## generamos el vectotr
-X = [estadodestino, taxi_out, franjahoraindex, wheels_off, float(des_wac), tiempoaire*60, tiempovuelo*60, operating_airline, month, originstateindex, 
+X = [[estadodestino, taxi_out, franjahoraindex, wheels_off, float(des_wac), tiempoaire*60, tiempovuelo*60, operating_airline, month, originstateindex, 
                   float(Numero_vuelo),float(wheels_on), airline_index, float(dot_id), tiempodevueloreal*60, float(OriginSeq), float(dot_id_operating), 
-                  quarter, tailid, float(DestSeq), float(OriginCityMarket), Origin_ID, dayofmonth]
+                  quarter, tailid, float(DestSeq), float(OriginCityMarket), Origin_ID, dayofmonth]]
 
 # Escaladores
-# X_scaler = MinMaxScaler()
-# y_scaler = MinMaxScaler()
 
 with open('Data/X_scaler_NO.pkl', 'br')as f:
     X_scaler = pkl.load(f)
@@ -206,3 +204,11 @@ model = load_model('Data/regression_model_2_NO.keras')
 X = X_scaler.transform(X)
 
 st.write(X)
+
+# Predictor (yhat)
+yhat = model.predict(X)
+
+#Reescalamos
+y = y_scaler.inverse_transform(yhat)
+
+st.write(y)
