@@ -204,8 +204,8 @@ usos_horarios= {'Hawaii': uso_1, 'Alasca': uso_2, 'Washington': uso_3, 'Oregon':
                  'Maryland': uso_6, 'New Jersey': uso_6, 'New Hampshire': uso_6, 'Massachusetts': uso_6, 'Rhode Island': uso_6, 'Connecticut': uso_6, 
                  'Puerto Rico': uso_6, 'U.S. Virgin Islands': uso_6, 'U.S. Pacific Trust Territories and Possessions': uso_7}
 
-blktime_1 = datetime.datetime.strptime(str(int(franjahora.split('-')[1]) - random.randint(0, 59)), "%H%M").time()
-blktime_2 = (datetime.datetime.strptime(str(franjahora.split('-')[1]), "%H%M") + datetime.timedelta(minutes=random.randint(0, 59))).time()
+blktime_1 = datetime.datetime.strptime(str(int(franjahora.split('-')[1]) - random.randint(0, 59)), "%H%M")
+blktime_2 = (datetime.datetime.strptime(str(franjahora.split('-')[1]), "%H%M") + datetime.timedelta(minutes=random.randint(0, 59)))
 wheels_off = random.choice([blktime_1, blktime_2])
 st.write(type(tiempoaire))
 wheels_on = wheels_off + datetime.timedelta(hours = (int(usos_horarios.get(estadoorigen)) - int(usos_horarios.get(estadodestino))), minutes = int(tiempoaire*60))
