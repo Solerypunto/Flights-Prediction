@@ -193,7 +193,7 @@ usos_horarios= {'Hawaii': uso_1, 'Alasca': uso_2, 'Washington': uso_3, 'Oregon':
 st.write()
 
 blktime_1 = datetime.datetime.strptime(str(int(franjahora.split('-')[1]) - random.randint(0, 59)), "%H%M")
-blktime_2 = datetime.datetime.strptime(franjahora.split('-')[1], "%H%M") + datetime.datetime.strptime(str(random.randint(0, 59)), "%M")
+blktime_2 = datetime.datetime.strptime(str(franjahora.split('-')[1]), "%H%M") + datetime.datetime.strptime(str(random.randint(0, 59)), "%M")
 wheels_off = random.choice([blktime_1, blktime_2])
 st.write(wheels_off)
 wheels_on = usos_horarios.get(estadoorigen)
