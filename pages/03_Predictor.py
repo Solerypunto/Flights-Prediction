@@ -197,6 +197,7 @@ blktime_2 = (datetime.datetime.strptime(str(franjahora.split('-')[1]), "%H%M") +
 wheels_off = random.choice([blktime_1, blktime_2])
 st.write(wheels_off)
 wheels_on = usos_horarios.get(estadoorigen)
+st.write(wheels_on)
 
 
 dayofmonth = fechavuelo.day
