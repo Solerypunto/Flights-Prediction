@@ -15,6 +15,7 @@ import pickle as pkl
 from keras.models import load_model
 from sklearn.preprocessing import MinMaxScaler
 import tensorflow as tf
+import random
 
 ##### Configuracion de la página ###############################################################
 
@@ -122,13 +123,13 @@ opcionales = st.expander(label = 'Estos valores son para jugar :)')
 
 matricula = df[df['Airline']==Aerolinea]['Tail_Number'].unique().tolist()
 taxiout = sorted(df[df['Airline']==Aerolinea]['TaxiOut'].unique().tolist())
-wheelsoff = sorted(df[df['Airline']==Aerolinea]['WheelsOff'].unique().tolist())
-wheelson = sorted(df[df['Airline']==Aerolinea]['WheelsOn'].unique().tolist())
+# wheelsoff = sorted(df[df['Airline']==Aerolinea]['WheelsOff'].unique().tolist())
+# wheelson = sorted(df[df['Airline']==Aerolinea]['WheelsOn'].unique().tolist())
 
 with opcionales:
     taxi_out = st.select_slider(label= 'Taxi Out: Tiempo del avion en pista antes de despegar (en minutos)', options= taxiout)
-    wheels_off= st.select_slider(label= 'Wheels off: Tiempo que tarda en recoger las ruedas en el despegue (en segundo)s', options= wheelsoff)
-    wheels_on= st.select_slider(label= 'Wheels on: Tiempo que tarda en sacar las ruedas en el aterrizaje', options= wheelson)
+    # wheels_off= st.select_slider(label= 'Wheels off: Tiempo que tarda en recoger las ruedas en el despegue (en segundo)s', options= wheelsoff)
+    # wheels_on= st.select_slider(label= 'Wheels on: Tiempo que tarda en sacar las ruedas en el aterrizaje', options= wheelson)
     tail_number = st.selectbox(label= 'Elige tu avion', options= matricula, index=int(len(matricula)/2))
 
 st.divider()
@@ -165,6 +166,36 @@ st.subheader('''Tu vuelo \n
                                              round(tiempoaire, 2)))
 
 # Generamos Variables
+
+####### LA TRAMPA ######
+uso_1 = 1
+uso_2 = 2
+uso_3 = 3
+uso_4 = 4
+uso_5 = 5
+uso_6 = 6
+uso_7 = 21
+
+usos_horarios= {'Hawaii': uso_1, 'Alasca': uso_2, 'Washington': uso_3, 'Oregon': uso_3, 'Nevada': uso_3, 'California': uso_3,
+                 'Montana': uso_4, 'Idaho': uso_4, 'Utah': uso_4, 'Wyoming': uso_4,'Colorado': uso_4, 'Arizona': uso_4, 'New Mexico': uso_4,
+                 'North Dakota': uso_5, 'South Dakota': uso_5, 'Nebraska': uso_5, 'Kansas': uso_5, 'Oklahoma': uso_5, 'Texas': uso_5, 
+                 'Minnesota': uso_5, 'Iowa': uso_5, 'Missouri': uso_5, 'Arkansas': uso_5, 'Louisiana': uso_5,'Wisconsin': uso_5,
+                 'Illinois': uso_5, 'Tenessee': uso_5, 'Mississippi': uso_5, 'Alabama': uso_5, 'Michigan': uso_6, 'Indiana': uso_6, 'Kentucky': uso_6, 
+                 'Georgia': uso_6, 'Florida': uso_6, 'Ohio': uso_6, 'West Virginia': uso_6, 'Virginia': uso_6, 'North Carolina': uso_6, 
+                 'South Carolina': uso_6, 'Pennsylvania': uso_6, 'Delaware': uso_6, 'New York': uso_6, 'Vermont': uso_6, 'Maine': uso_6, 
+                 'Maryland': uso_6, 'New Jersey': uso_6, 'New Hampshire': uso_6, 'Massachusetts': uso_6, 'Rhode Island': uso_6, 'Connecticut': uso_6, 
+                 'Puerto Rico': uso_6, 'U.S. Virgin Islands': uso_6, 'U.S. Pacific Trust Territories and Possessions': uso_7}
+
+# blktime_1 = int(franjahora.split('-')[1]) - random.randint(0, 59)
+# blktime_2 = int(franjahora.split('-')[1]) + random.randint(100, 159)
+# if blktime_2 >= 2400:
+#     blktime_2 = blktime_2 -2400
+
+blktime_1 = datetime.strptime(str(franjahora.split('-')[1] - random.randint(0, 59)), "%H%M")
+blktime_2 = datetime.strptime(str(franjahora.split('-')[1]), "%H%M") + datetime.strptime(random.randint(0, 59), "%M")
+wheels_off = random.choice([blktime_1, blktime_2])
+st.write(wheels_off)
+wheels_on = usos_horarios.get(estadoorigen)
 
 dayofmonth = fechavuelo.day
 month = fechavuelo.month
@@ -203,12 +234,11 @@ model = load_model('Data/regression_model_2_NO.keras')
 # Escalamos X
 X = X_scaler.transform(X)
 
-st.write(X)
-
 # Predictor (yhat)
 yhat = model.predict(X)
 
 #Reescalamos
 y = y_scaler.inverse_transform(yhat)
 
-st.write(y)
+
+
