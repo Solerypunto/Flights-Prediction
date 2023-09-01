@@ -167,6 +167,23 @@ st.subheader('''Tu vuelo \n
 
 # Generamos Variables
 
+dayofmonth = fechavuelo.day
+month = fechavuelo.month
+quarter = (fechavuelo.month - 1) // 3 + 1
+estadodestino = df[df['Dest']==a_dest]['DestStateIndex'].unique()[0]
+des_wac = df[df['DestStateIndex']==estadodestino]['DestWac'].unique()[0]
+operating_airline = df[df['Airline']==Aerolinea]["Operating_AirlineIndex"].unique()[0]
+airline_index = df[df['Airline']==Aerolinea]["AirlineIndex"].unique()[0]
+originstateindex = df[df['Origin']==aeropuertoorigen]['OriginStateNameIndex'].unique()[0]
+dot_id = df[df['Airline']==Aerolinea]["DOT_ID_Marketing_Airline"].unique()[0]
+OriginSeq = df[df['Origin']==aeropuertoorigen]["OriginAirportSeqID"].unique()[0]
+dot_id_operating =  df[df['Airline']==Aerolinea]["DOT_ID_Operating_Airline"].unique()[0]
+DestSeq = df[df['Dest']==a_dest]["DestAirportSeqID"].unique()[0]
+OriginCityMarket = df[df['OriginCityName']==ciudadorigen]["OriginCityMarketID"].unique()[0]
+Origin_ID = df[df['Origin']==aeropuertoorigen]['OriginIndex'].unique()[0]
+franjahoraindex = df[df['DepTimeBlk']==franjahora]['DepTimeBlkIndex'].unique()[0]
+tailid = df[df['Tail_Number']==tail_number]['Tail_NumberIndex'].unique()[0]
+
 ####### LA TRAMPA ######
 uso_1 = 1
 uso_2 = 2
@@ -186,36 +203,15 @@ usos_horarios= {'Hawaii': uso_1, 'Alasca': uso_2, 'Washington': uso_3, 'Oregon':
                  'Maryland': uso_6, 'New Jersey': uso_6, 'New Hampshire': uso_6, 'Massachusetts': uso_6, 'Rhode Island': uso_6, 'Connecticut': uso_6, 
                  'Puerto Rico': uso_6, 'U.S. Virgin Islands': uso_6, 'U.S. Pacific Trust Territories and Possessions': uso_7}
 
-# blktime_1 = int(franjahora.split('-')[1]) - random.randint(0, 59)
-# blktime_2 = int(franjahora.split('-')[1]) + random.randint(100, 159)
-# if blktime_2 >= 2400:
-#     blktime_2 = blktime_2 -2400
-st.write()
-
 blktime_1 = datetime.datetime.strptime(str(int(franjahora.split('-')[1]) - random.randint(0, 59)), "%H%M").time()
 blktime_2 = (datetime.datetime.strptime(str(franjahora.split('-')[1]), "%H%M") + datetime.timedelta(minutes=random.randint(0, 59))).time()
 wheels_off = random.choice([blktime_1, blktime_2])
 st.write(wheels_off)
-wheels_on = usos_horarios.get(estadoorigen)
+wheels_on = wheels_off + datetime.timedelta(hours=usos_horarios.get(estadoorigen)-usos_horarios.get(estadodestino) ,minutes= tiempoaire)
 st.write(wheels_on)
 
-
-dayofmonth = fechavuelo.day
-month = fechavuelo.month
-quarter = (fechavuelo.month - 1) // 3 + 1
-estadodestino = df[df['Dest']==a_dest]['DestStateIndex'].unique()[0]
-des_wac = df[df['DestStateIndex']==estadodestino]['DestWac'].unique()[0]
-operating_airline = df[df['Airline']==Aerolinea]["Operating_AirlineIndex"].unique()[0]
-airline_index = df[df['Airline']==Aerolinea]["AirlineIndex"].unique()[0]
-originstateindex = df[df['Origin']==aeropuertoorigen]['OriginStateNameIndex'].unique()[0]
-dot_id = df[df['Airline']==Aerolinea]["DOT_ID_Marketing_Airline"].unique()[0]
-OriginSeq = df[df['Origin']==aeropuertoorigen]["OriginAirportSeqID"].unique()[0]
-dot_id_operating =  df[df['Airline']==Aerolinea]["DOT_ID_Operating_Airline"].unique()[0]
-DestSeq = df[df['Dest']==a_dest]["DestAirportSeqID"].unique()[0]
-OriginCityMarket = df[df['OriginCityName']==ciudadorigen]["OriginCityMarketID"].unique()[0]
-Origin_ID = df[df['Origin']==aeropuertoorigen]['OriginIndex'].unique()[0]
-franjahoraindex = df[df['DepTimeBlk']==franjahora]['DepTimeBlkIndex'].unique()[0]
-tailid = df[df['Tail_Number']==tail_number]['Tail_NumberIndex'].unique()[0]
+# WheelsOn = WheelsOff + HusoHorario + Airtime
+st.write(wheels_on)
 
 ### PREDICCION
 ## generamos el vectotr
