@@ -239,7 +239,11 @@ yhat = model.predict(X)
 #Reescalamos
 y = y_scaler.inverse_transform(yhat)
 
-st.write(y)
+
+if y[0] < 0:
+    st.header(f'Su vuelo se adelanta: {y[0]} minutos' )
+else:
+    st.header(f'Su vuelo se atrasa: {y[0]} minutos' )
 
 
 
