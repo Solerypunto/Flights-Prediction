@@ -271,7 +271,7 @@ chart_data = pd.DataFrame(
 st.pydeck_chart(pdk.Deck(
     map_style=None,
     initial_view_state=pdk.ViewState(
-        latitude=38),
+        latitude=38,
         longitude=-98,
         zoom=2.6,
         pitch=50,
