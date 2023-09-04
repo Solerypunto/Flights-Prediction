@@ -239,7 +239,7 @@ else:
     st.header(f'Su vuelo se atrasa: {str(round(y[0][0]))} minutos' )
 
 # Mapa vuelo
-longit= st.write(df[df['OriginCityName']==ciudadorigen]['LONGITUDE'].unique()[0])
+longit= df[df['OriginCityName']==ciudadorigen]['LONGITUDE'].unique()[0]
 latit= df[df['OriginCityName']==ciudadorigen]['LATITUDE'].unique()[0]
 longit_dest= df[df['DestCityName']==ciudaddest]['LONGITUDE'].unique()[0]
 latit_dest= df[df['DestCityName']==ciudaddest]['LATITUDE'].unique()[0]
@@ -267,14 +267,14 @@ G_RGB = [56, 191, 140, 40]
 
 ArcLayer= pdk.Layer("ArcLayer",
                     data= df,
-                    # get_width= "5",
+                    get_width= "5",
                     get_source_position= ["longit", "latit"],
                     get_target_position= ["longit_dest", "latit_dest"],
-                    # # get_tilt= 15,
-                    # get_source_color= Y_RGB,
-                    # get_target_color= G_RGB,
-                    # pickable= True,
-                    # auto_highlight=True
+                    get_tilt= 15,
+                    get_source_color= Y_RGB,
+                    get_target_color= G_RGB,
+                    pickable= True,
+                    auto_highlight=True
                     )
 
 view_state = pdk.ViewState(latitude=38,
