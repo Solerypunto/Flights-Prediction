@@ -244,7 +244,7 @@ latit= df[df['Origin']==aeropuertoorigen]['LATITUDE'].unique()[0]
 longit_dest= df[df['Dest']==a_dest]['LONGITUDE'].unique()[0]
 latit_dest= df[df['Dest']==a_dest]['LATITUDE'].unique()[0]
 
-# st.write(longit,latit,longit_dest,latit_dest)
+st.write(longit,latit,longit_dest,latit_dest)
 df_mapa = pd.DataFrame({'longit':longit, 'latit':latit, 'longit_dest':longit_dest, 'latit_dest':latit_dest}, index=[0])
 
 Y_RGB = [255, 255, 0, 40]
