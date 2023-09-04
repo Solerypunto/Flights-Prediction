@@ -239,14 +239,14 @@ else:
     st.header(f'Su vuelo se atrasa: {str(round(y[0][0]))} minutos' )
 
 # Mapa vuelo
-longit= df[df['OriginCityName']==ciudadorigen]['LONGITUDE'].unique()[0]
-latit= df[df['OriginCityName']==ciudadorigen]['LATITUDE'].unique()[0]
-longit_dest= df[df['DestCityName']==ciudaddest]['LONGITUDE'].unique()[0]
-latit_dest= df[df['DestCityName']==ciudaddest]['LATITUDE'].unique()[0]
+longit= df[df['OriginCityName']==ciudadorigen]['LONGITUDE'].unique()
+latit= df[df['OriginCityName']==ciudadorigen]['LATITUDE'].unique()
+longit_dest= df[df['DestCityName']==ciudaddest]['LONGITUDE'].unique()
+latit_dest= df[df['DestCityName']==ciudaddest]['LATITUDE'].unique()
 
 st.write(longit,latit,longit_dest,latit_dest)
 dfmapa = {'longit':longit, 'latit':latit, 'longit_dest':longit_dest, 'latit_dest':latit_dest}
-df_mapa = pd.array(dfmapa)
+df_mapa = pd.DataFrame(dfmapa)
 # df_mapa['longit']= longit
 # df_mapa['latit']= latit
 # df_mapa['longit_dest']= longit_dest
