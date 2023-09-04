@@ -281,8 +281,8 @@ CircleLayer= pdk.Layer("GreatCircleLayer",
                     auto_highlight=True
                     )
 
-view_state = pdk.ViewState(latitude= longit_media,
-                           longitude= latit_media,
+view_state = pdk.ViewState(latitude= 38,
+                           longitude= -98.5,
                            zoom=3,
                            pitch=50)
 
