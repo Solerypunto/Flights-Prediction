@@ -244,13 +244,8 @@ latit= df[df['Origin']==aeropuertoorigen]['LATITUDE'].unique()[0]
 longit_dest= df[df['Dest']==a_dest]['LONGITUDE'].unique()[0]
 latit_dest= df[df['Dest']==a_dest]['LATITUDE'].unique()[0]
 
-st.write(longit,latit,longit_dest,latit_dest)
-dfmapa = {'longit':longit, 'latit':latit, 'longit_dest':longit_dest, 'latit_dest':latit_dest}
-df_mapa = pd.DataFrame(dfmapa, index=[0])#.reset_index()
-# df_mapa['longit']= longit
-# df_mapa['latit']= latit
-# df_mapa['longit_dest']= longit_dest
-# df_mapa['latit_dest']= latit_dest
+# st.write(longit,latit,longit_dest,latit_dest)
+df_mapa = pd.DataFrame({'longit':longit, 'latit':latit, 'longit_dest':longit_dest, 'latit_dest':latit_dest}, index=[0])
 
 st.dataframe(df_mapa)
 
@@ -276,7 +271,7 @@ G_RGB = [56, 191, 140, 40]
 
 CircleLayer= pdk.Layer("GreatCircleLayer",
                     data= df_mapa,
-                    get_stroke_width=12,
+                    get_stroke_width=120,
                     get_source_position= ["longit", "latit"],
                     get_target_position= ["longit_dest", "latit_dest"],
                     get_source_color= Y_RGB,
