@@ -280,7 +280,7 @@ ArcLayer=[
     ),
 ],
 
-st.pydeck_chart(pdk.Deck#(ArcLayer,
+st.pydeck_chart(pdk.Deck(#ArcLayer,
     map_style=None,
     initial_view_state=pdk.ViewState(
         latitude=38,
