@@ -63,7 +63,7 @@ st.header('¿Cual es tu vuelo?')
 ### Imputs usuario
 ## Fecha
 st.subheader('Fecha')
-fechavuelo = st.date_input("¿Cuando es tu vuelo?", datetime.date(2023, 9, 10))
+fechavuelo = st.date_input("¿Cuando es tu vuelo?", datetime.date.today())
 
 franjahora = st.select_slider(label='Franja horaria', options=sorted(['0900-0959', '1000-1059', '2200-2259', '1500-1559', '1100-1159',
                                                                '0800-0859', '1300-1359', '1600-1659', '1200-1259', '0700-0759',
