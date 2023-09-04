@@ -241,7 +241,7 @@ else:
 # Mapa vuelo
 longit= str(df[df['OriginCityName']==ciudadorigen]['LONGITUDE'].unique()[0])
 latit= str(df[df['OriginCityName']==ciudadorigen]['LATITUDE'].unique()[0])
-longit_dest= str(df[df['DestCityName']==ciudaddestino]['LONGITUDE'].unique()[0])
+longit_dest= st.write(str(df[df['DestCityName']==ciudaddestino]['LONGITUDE'].unique()[0]))
 latit_dest= str(df[df['DestCityName']==ciudaddestino]['LATITUDE'].unique()[0])
 
 Y_RGB = [255, 255, 0, 40]
