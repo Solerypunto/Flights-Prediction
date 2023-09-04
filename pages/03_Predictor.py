@@ -53,7 +53,7 @@ with open(path, mode='r') as file:
     wac = json.load(file)
 dfwac = pd.DataFrame(wac,columns=['key', 'values'])
 
-
+#####################################################################################################################
 ##### Predictor ###############################################################
 
 st.header('¿Cual es tu vuelo?')
