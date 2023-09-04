@@ -249,7 +249,6 @@ df_mapa = pd.DataFrame({'longit':longit, 'latit':latit, 'longit_dest':longit_des
 Y_RGB = [255, 255, 0, 80]
 G_RGB = [56, 191, 140, 80]
 
-
 CircleLayer= pdk.Layer("GreatCircleLayer",
                     data= df_mapa, 
                     get_width = 4,
