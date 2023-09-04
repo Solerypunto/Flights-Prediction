@@ -272,7 +272,7 @@ G_RGB = [56, 191, 140, 40]
 
 CircleLayer= pdk.Layer("GreatCircleLayer",
                     data= df_mapa,
-                    get_stroke_width=10,
+                    get_stroke_width='10000000',
                     get_source_position= ["longit", "latit"],
                     get_target_position= ["longit_dest", "latit_dest"],
                     get_source_color= Y_RGB,
