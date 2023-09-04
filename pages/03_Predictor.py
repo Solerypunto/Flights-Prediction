@@ -247,8 +247,6 @@ latit_dest= df[df['Dest']==a_dest]['LATITUDE'].unique()[0]
 # st.write(longit,latit,longit_dest,latit_dest)
 df_mapa = pd.DataFrame({'longit':longit, 'latit':latit, 'longit_dest':longit_dest, 'latit_dest':latit_dest}, index=[0])
 
-st.dataframe(df_mapa)
-
 Y_RGB = [255, 255, 0, 40]
 G_RGB = [56, 191, 140, 40]
 
@@ -280,10 +278,22 @@ CircleLayer= pdk.Layer("GreatCircleLayer",
                     auto_highlight=True
                     )
 
+ArcLayers=pdk.Layer("ArcLayer",
+                    data= df,
+                    get_width= 1,
+                    get_source_position=['longit', 'latit'],
+                    get_target_position=[l'ongit_des't, 'latit_dest'],
+                    get_tilt=100,
+                    get_source_color=Y_RGB,
+                    get_target_color=G_RGB,
+                    pickable=True,
+                    auto_highlight=True,
+                    )
+
 view_state = pdk.ViewState(latitude=38,
                            longitude=-98,
                            zoom=2.6,
                            pitch=50)
 
-st.pydeck_chart(pdk.Deck(layers= CircleLayer, initial_view_state= view_state))
+st.pydeck_chart(pdk.Deck(layers= ArcLayers, initial_view_state= view_state))
 
