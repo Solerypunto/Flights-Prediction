@@ -245,12 +245,12 @@ longit_dest= df[df['DestCityName']==ciudaddest]['LONGITUDE'].unique()[0]
 latit_dest= df[df['DestCityName']==ciudaddest]['LATITUDE'].unique()[0]
 
 st.write(longit,latit,longit_dest,latit_dest)
-# dfmapa = {'longit':longit, 'latit':latit, 'longit_dest':longit_dest, 'latit_dest':latit_dest}
-df_mapa = pd.array()
-df_mapa['longit']= longit
-df_mapa['latit']= latit
-df_mapa['longit_dest']= longit_dest
-df_mapa['latit_dest']= latit_dest
+dfmapa = {'longit':longit, 'latit':latit, 'longit_dest':longit_dest, 'latit_dest':latit_dest}
+df_mapa = pd.array(dfmapa)
+# df_mapa['longit']= longit
+# df_mapa['latit']= latit
+# df_mapa['longit_dest']= longit_dest
+# df_mapa['latit_dest']= latit_dest
 
 st.dataframe(df_mapa)
 
