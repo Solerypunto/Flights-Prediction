@@ -245,10 +245,6 @@ longit_dest= df[df['Origin']==a_dest]['LONGITUDE'].unique()[0]
 latit_dest= df[df['Origin']==a_dest]['LATITUDE'].unique()[0]
 
 df_mapa = pd.DataFrame({'longit':longit, 'latit':latit, 'longit_dest':longit_dest, 'latit_dest':latit_dest}, index=[0])
-longit_media= round(((longit+longit_dest)/2), 4)
-latit_media= round(((latit+latit_dest)/2), 4)
-
-st.write(longit,latit,longit_dest,latit_dest, longit_media, latit_media)
 
 Y_RGB = [255, 255, 0, 80]
 G_RGB = [56, 191, 140, 80]
@@ -266,8 +262,8 @@ CircleLayer= pdk.Layer("GreatCircleLayer",
                     auto_highlight=True
                     )
 
-view_state = pdk.ViewState(latitude= longit_media,
-                           longitude= latit_media,
+view_state = pdk.ViewState(latitude= 38,
+                           longitude= -98.5,
                            zoom=3,
                            pitch=70)
 
