@@ -239,28 +239,28 @@ else:
     st.header(f'Su vuelo se atrasa: {str(round(y[0][0]))} minutos' )
 
 # Mapa vuelo
-longit= str(df[df['OriginCityName']==ciudadorigen]['LONGITUDE'].unique()[0])
+longit= st.write(str(df[df['OriginCityName']==ciudadorigen]['LONGITUDE'].unique()[0]))
 latit= str(df[df['OriginCityName']==ciudadorigen]['LATITUDE'].unique()[0])
-longit_dest= str(df[df['DestCityName']==ciudaddest]['LONGITUDE'].unique()[0])
+longit_dest= st.write(str(df[df['DestCityName']==ciudaddest]['LONGITUDE'].unique()[0]))
 latit_dest= str(df[df['DestCityName']==ciudaddest]['LATITUDE'].unique()[0])
 
-Y_RGB = [255, 255, 0, 40]
-G_RGB = [56, 191, 140, 40]
+# Y_RGB = [255, 255, 0, 40]
+# G_RGB = [56, 191, 140, 40]
 
-st.pydeck_chart(pdk.Deck( map_style=None, 
-                         initial_view_state=pdk.ViewState(latitude=38,
-                                                          longitude= -98.579437, 
-                                                          zoom=2.6,
-                                                          pitch=0,),
-                         layers=[pdk.Layer("ArcLayer",
-                                            data= df,
-                                            get_width= 1,
-                                            get_source_position=[longit, latit],
-                                            get_target_position=[longit_dest, latit_dest],
-                                            get_tilt=1,
-                                            get_source_color=Y_RGB,
-                                            get_target_color=G_RGB,
-                                            pickable=True,
-                                            auto_highlight=True,
-                                            )]))
+# st.pydeck_chart(pdk.Deck( map_style=None, 
+#                          initial_view_state=pdk.ViewState(latitude=38,
+#                                                           longitude= -98.579437, 
+#                                                           zoom=2.6,
+#                                                           pitch=0,),
+#                          layers=[pdk.Layer("ArcLayer",
+#                                             data= df,
+#                                             get_width= 1,
+#                                             get_source_position=[longit, latit],
+#                                             get_target_position=[longit_dest, latit_dest],
+#                                             get_tilt=1,
+#                                             get_source_color=Y_RGB,
+#                                             get_target_color=G_RGB,
+#                                             pickable=True,
+#                                             auto_highlight=True,
+#                                             )]))
 
