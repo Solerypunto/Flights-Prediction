@@ -276,17 +276,19 @@ st.pydeck_chart(pdk.Deck(
         zoom=2.6,
         pitch=50,
     ),
-    # layers=[
-    #     pdk.Layer(
-    #        'HexagonLayer',
-    #        data=chart_data,
-    #        get_position='[lon, lat]',
-    #        radius=200,
-    #        elevation_scale=4,
-    #        elevation_range=[0, 1000],
-    #        pickable=True,
-    #        extruded=True,
-    #     ),
+    layers=[
+        pdk.Layer(
+           "ArcLayer",
+          data= df,
+            get_width= 1,
+            get_source_position=[longit, latit],
+            get_target_position=[longit_dest, latit_dest],
+            get_tilt=1,
+            get_source_color=Y_RGB,
+            get_target_color=G_RGB,
+            pickable=True,
+            auto_highlight=True,
+        ),
     #     pdk.Layer(
     #         'ScatterplotLayer',
     #         data=chart_data,
@@ -294,6 +296,6 @@ st.pydeck_chart(pdk.Deck(
     #         get_color='[200, 30, 0, 160]',
     #         get_radius=200,
     #     ),
-    # ],
+    ],
 ))
 
