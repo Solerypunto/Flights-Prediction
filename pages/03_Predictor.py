@@ -243,6 +243,9 @@ longit= df[df['OriginCityName']==ciudadorigen]['LONGITUDE'].unique()[0]
 latit= df[df['OriginCityName']==ciudadorigen]['LATITUDE'].unique()[0]
 longit_dest= df[df['DestCityName']==ciudaddest]['LONGITUDE'].unique()[0]
 latit_dest= df[df['DestCityName']==ciudaddest]['LATITUDE'].unique()[0]
+
+st.write(longit,latit,longit_dest,latit)
+
 df_mapa = pd.DataFrame([longit,latit,longit_dest,latit_dest], columns=['longit','latit','longit_dest','latit_dest']).reset_index()
 st.dataframe(df_mapa)
 
