@@ -245,8 +245,10 @@ longit_dest= df[df['DestCityName']==ciudaddest]['LONGITUDE'].unique()[0]
 latit_dest= df[df['DestCityName']==ciudaddest]['LATITUDE'].unique()[0]
 
 st.write(longit,latit,longit_dest,latit_dest)
-dfmapa = {'longit':longit, 'latit':latit, 'longit_dest':longit_dest, 'latit_dest':latit_dest}
-df_mapa = pd.DataFrame(dfmapa)
+# dfmapa = {'longit':longit, 'latit':latit, 'longit_dest':longit_dest, 'latit_dest':latit_dest}
+df_mapa = pd.DataFrame()
+df_mapa['longit', 'latit', 'longit_dest', 'latit_dest']=longit, latit, longit_dest, latit_dest
+
 st.dataframe(df_mapa)
 
 Y_RGB = [255, 255, 0, 40]
