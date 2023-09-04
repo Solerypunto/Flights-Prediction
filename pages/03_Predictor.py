@@ -244,6 +244,7 @@ latit= df[df['OriginCityName']==ciudadorigen]['LATITUDE'].unique()[0]
 longit_dest= df[df['DestCityName']==ciudaddest]['LONGITUDE'].unique()[0]
 latit_dest= df[df['DestCityName']==ciudaddest]['LATITUDE'].unique()[0]
 
+
 Y_RGB = [255, 255, 0, 40]
 G_RGB = [56, 191, 140, 40]
 
@@ -281,8 +282,8 @@ st.pydeck_chart(pdk.Deck(
            "ArcLayer",
             data= df,
             get_width= 1,
-            get_source_position= '[longit, latit]',
-            get_target_position= '[longit_dest, latit_dest]',
+            get_source_position= ['longit', 'latit'],
+            get_target_position= ['longit_dest', 'latit_dest'],
             get_tilt= 1,
             # get_source_color= Y_RGB,
             # get_target_color= G_RGB,
