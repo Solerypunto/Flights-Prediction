@@ -289,7 +289,7 @@ st.pydeck_chart(pdk.Deck(
     #         get_target_color= G_RGB,
     #         pickable= True,
     #         auto_highlight=True,
-        ),
-    ],
+    #     ),
+    # ],
 ))
 
