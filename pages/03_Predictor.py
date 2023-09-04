@@ -265,8 +265,7 @@ G_RGB = [56, 191, 140, 40]
 #                                             auto_highlight=True,
 #                                             )]))
 
-ArcLayer=[
-    pdk.Layer(
+ArcLayer= pdk.Layer(
         "ArcLayer",
         data= df,
         get_width= "5",
@@ -276,17 +275,14 @@ ArcLayer=[
         get_source_color= Y_RGB,
         get_target_color= G_RGB,
         pickable= True,
-        auto_highlight=True
-    )
-]
+        auto_highlight=True)
 
-st.pydeck_chart(pdk.Deck(layers= ArcLayer,
-    map_style=None,
-    initial_view_state=pdk.ViewState(
-        latitude=38,
-        longitude=-98,
-        zoom=2.6,
-        pitch=50,
-    )
-))
+
+view_state = pdk.ViewState(
+    latitude=38,
+    longitude=-98,
+    zoom=2.6,
+    pitch=50)
+
+st.pydeck_chart(pdk.Deck(layers= ArcLayer, initial_view_state= view_state))
 
