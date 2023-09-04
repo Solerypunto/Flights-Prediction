@@ -285,18 +285,11 @@ st.pydeck_chart(pdk.Deck(
             get_source_position= ['longit', 'latit'],
             get_target_position= ['longit_dest', 'latit_dest'],
             get_tilt= 1,
-            # get_source_color= Y_RGB,
-            # get_target_color= G_RGB,
+            get_source_color= Y_RGB,
+            get_target_color= G_RGB,
             pickable= True,
             auto_highlight=True,
         ),
-    #     pdk.Layer(
-    #         'ScatterplotLayer',
-    #         data=chart_data,
-    #         get_position='[lon, lat]',
-    #         get_color='[200, 30, 0, 160]',
-    #         get_radius=200,
-    #     ),
     ],
 ))
 
