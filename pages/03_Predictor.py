@@ -123,13 +123,9 @@ opcionales = st.expander(label = 'Estos valores son para jugar :)')
 
 matricula = df[df['Airline']==Aerolinea]['Tail_Number'].unique().tolist()
 taxiout = sorted(df[df['Airline']==Aerolinea]['TaxiOut'].unique().tolist())
-# wheelsoff = sorted(df[df['Airline']==Aerolinea]['WheelsOff'].unique().tolist())
-# wheelson = sorted(df[df['Airline']==Aerolinea]['WheelsOn'].unique().tolist())
 
 with opcionales:
     taxi_out = st.select_slider(label= 'Taxi Out: Tiempo del avion en pista antes de despegar (en minutos)', options= taxiout)
-    # wheels_off= st.select_slider(label= 'Wheels off: Tiempo que tarda en recoger las ruedas en el despegue (en segundo)s', options= wheelsoff)
-    # wheels_on= st.select_slider(label= 'Wheels on: Tiempo que tarda en sacar las ruedas en el aterrizaje', options= wheelson)
     tail_number = st.selectbox(label= 'Elige tu avion', options= matricula, index=int(len(matricula)/2))
 
 st.divider()
@@ -185,7 +181,7 @@ Origin_ID = df[df['Origin']==aeropuertoorigen]['OriginIndex'].unique()[0]
 franjahoraindex = df[df['DepTimeBlk']==franjahora]['DepTimeBlkIndex'].unique()[0]
 tailid = df[df['Tail_Number']==tail_number]['Tail_NumberIndex'].unique()[0]
 
-####### LA TRAMPA ######
+####### LA TRAMPA ###################################################################
 uso_1 = 1
 uso_2 = 2
 uso_3 = 3
@@ -211,14 +207,13 @@ wheels_on = wheels_off + datetime.timedelta(hours = (int(usos_horarios.get(estad
 wheels_off = int(datetime.time.strftime(wheels_off.time(),'%H%M'))
 wheels_on = int(datetime.time.strftime(wheels_on.time(),'%H%M'))
 
-### PREDICCION
+### PREDICCION ######################################################################
 ## generamos el vectotr
 X = [[estadodestinoindex, taxi_out, franjahoraindex, wheels_off, float(des_wac), tiempoaire*60, tiempovuelo*60, operating_airline, month, originstateindex, 
                   float(Numero_vuelo),float(wheels_on), airline_index, float(dot_id), tiempodevueloreal*60, float(OriginSeq), float(dot_id_operating), 
                   quarter, tailid, float(DestSeq), float(OriginCityMarket), Origin_ID, dayofmonth]]
 
 # Escaladores
-
 with open('Data/X_scaler_NO.pkl', 'br')as f:
     X_scaler = pkl.load(f)
 
@@ -237,11 +232,35 @@ yhat = model.predict(X)
 #Reescalamos
 y = y_scaler.inverse_transform(yhat)
 
-
+# Resultado
 if y[0] < 0:
     st.header(f'Su vuelo se adelanta: {str(round(abs(y[0][0])))} minutos' )
 else:
     st.header(f'Su vuelo se atrasa: {str(round(y[0][0]))} minutos' )
 
+# Mapa vuelo
+longit= str(df[df['OriginCityName']==ciudadorigen]['LONGITUDE'].unique()[0])
+latit= str(df[df['OriginCityName']==ciudadorigen]['LATITUDE'].unique()[0])
+longit_dest= str(df[df['DestCityName']==ciudaddestino]['LONGITUDE'].unique()[0])
+latit_dest= str(df[df['DestCityName']==ciudaddestino]['LATITUDE'].unique()[0])
 
+Y_RGB = [255, 255, 0, 40]
+G_RGB = [56, 191, 140, 40]
+
+st.pydeck_chart(pdk.Deck( map_style=None, 
+                         initial_view_state=pdk.ViewState(latitude=38,
+                                                          longitude= -98.579437, 
+                                                          zoom=2.6,
+                                                          pitch=0,),
+                         layers=[pdk.Layer("ArcLayer",
+                                            data= df,
+                                            get_width= 1,
+                                            get_source_position=[longit, latit],
+                                            get_target_position=[longit_dest, latit_dest],
+                                            get_tilt=1,
+                                            get_source_color=Y_RGB,
+                                            get_target_color=G_RGB,
+                                            pickable=True,
+                                            auto_highlight=True,
+                                            )]))
 
