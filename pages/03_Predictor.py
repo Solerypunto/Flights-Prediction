@@ -265,12 +265,11 @@ G_RGB = [56, 191, 140, 40]
 #                                             auto_highlight=True,
 #                                             )]))
 
-ArcLayer= pdk.Layer("ArcLayer",
+CircleLayer= pdk.Layer("GreatCircleLayer",
                     data= df,
-                    get_width= "5",
+                    get_stroke_width=12,
                     get_source_position= ["longit", "latit"],
                     get_target_position= ["longit_dest", "latit_dest"],
-                    get_tilt= 15,
                     get_source_color= Y_RGB,
                     get_target_color= G_RGB,
                     pickable= True,
@@ -282,5 +281,5 @@ view_state = pdk.ViewState(latitude=38,
                            zoom=2.6,
                            pitch=50)
 
-st.pydeck_chart(pdk.Deck(layers= ArcLayer, initial_view_state= view_state))
+st.pydeck_chart(pdk.Deck(layers= CircleLayer, initial_view_state= view_state))
 
