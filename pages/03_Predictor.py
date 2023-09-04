@@ -246,7 +246,7 @@ latit_dest= df[df['Dest']==a_dest]['LATITUDE'].unique()[0]
 
 st.write(longit,latit,longit_dest,latit_dest)
 dfmapa = {'longit':longit, 'latit':latit, 'longit_dest':longit_dest, 'latit_dest':latit_dest}
-df_mapa = pd.DataFrame(dfmapa, index=0)
+df_mapa = pd.DataFrame(dfmapa, index=0).reset_index()
 # df_mapa['longit']= longit
 # df_mapa['latit']= latit
 # df_mapa['longit_dest']= longit_dest
