@@ -243,6 +243,7 @@ longit= df[df['OriginCityName']==ciudadorigen]['LONGITUDE'].unique()[0]
 latit= df[df['OriginCityName']==ciudadorigen]['LATITUDE'].unique()[0]
 longit_dest= df[df['DestCityName']==ciudaddest]['LONGITUDE'].unique()[0]
 latit_dest= df[df['DestCityName']==ciudaddest]['LATITUDE'].unique()[0]
+pd.DataFrame([longit,latit,longit_dest,latit_dest], columns=['longit','latit','longit_dest','latit_dest'])
 
 
 Y_RGB = [255, 255, 0, 40]
