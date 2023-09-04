@@ -239,7 +239,7 @@ else:
     st.header(f'Su vuelo se atrasa: {str(round(y[0][0]))} minutos' )
 
 # Mapa vuelo
-longit= df[df['OriginCityName']==ciudadorigen]['LONGITUDE'].unique()[0]
+longit= st.write(df[df['OriginCityName']==ciudadorigen]['LONGITUDE'].unique()[0])
 latit= df[df['OriginCityName']==ciudadorigen]['LATITUDE'].unique()[0]
 longit_dest= df[df['DestCityName']==ciudaddest]['LONGITUDE'].unique()[0]
 latit_dest= df[df['DestCityName']==ciudaddest]['LATITUDE'].unique()[0]
