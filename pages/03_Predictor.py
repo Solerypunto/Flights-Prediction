@@ -103,7 +103,9 @@ if len(aeropuerto_destino) > 1:
     a_dest = st.selectbox(label='Aeropuerto de destino', options=aeropuerto_destino)
 else:
     a_dest = aeropuerto_destino[0]
+    
 st.divider()
+
 
 ## Vuelo
 st.subheader('Vuelo')
@@ -115,6 +117,7 @@ Numerovuelo = sorted(df[(df["Origin"] == aeropuertoorigen) & (df["Dest"] == a_de
 Numero_vuelo = st.selectbox(label='Numero de vuelo', options=Numerovuelo)
 
 st.divider()
+
 
 ## Opcionales 
 st.subheader('Valores opcionales')
