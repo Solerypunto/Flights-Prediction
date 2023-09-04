@@ -269,10 +269,10 @@ ArcLayer=[
     pdk.Layer(
         "ArcLayer",
         data= df,
-        get_width= "1",
+        get_width= "5",
         get_source_position= ["longit", "latit"],
         get_target_position= ["longit_dest", "latit_dest"],
-        get_tilt= 1,
+        get_tilt= 15,
         get_source_color= Y_RGB,
         get_target_color= G_RGB,
         pickable= True,
@@ -280,7 +280,7 @@ ArcLayer=[
     )
 ]
 
-st.pydeck_chart(pdk.Deck(ArcLayer,
+st.pydeck_chart(pdk.Deck(layers= ArcLayer,
     map_style=None,
     initial_view_state=pdk.ViewState(
         latitude=38,
