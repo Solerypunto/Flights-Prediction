@@ -56,9 +56,10 @@ dfwac = pd.DataFrame(wac,columns=['key', 'values'])
 
 ##### Predictor ###############################################################
 
+st.header('¿Cual es tu vuelo?')
+
 st_lottie(requests.get("https://lottie.host/e94e8eb0-c1ed-41c3-b6da-b22a5104f594/4sofR9rtYA.json").json(), height=200, key="paperplane")
 
-st.header('¿Cual es tu vuelo?')
 
 ### Imputs usuario
 ## Fecha
@@ -103,7 +104,7 @@ if len(aeropuerto_destino) > 1:
     a_dest = st.selectbox(label='Aeropuerto de destino', options=aeropuerto_destino)
 else:
     a_dest = aeropuerto_destino[0]
-    
+
 st.divider()
 
 

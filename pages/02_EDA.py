@@ -79,6 +79,8 @@ df_mapa = pd.merge(left=df_mapa, right= df_lat_long, left_on= 'Origin',right_on=
 
 #####################################################################################################################
 
+st.header('EDA')
+
 st_lottie(requests.get("https://lottie.host/e44dedf0-4f98-49e3-ab19-709275c763ae/zWrhP5d1F7.json").json(), height=300, key="airport-eda")
 
 ##
