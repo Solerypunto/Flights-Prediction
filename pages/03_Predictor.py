@@ -241,8 +241,8 @@ else:
 # Mapa vuelo
 longit= df[df['Origin']==aeropuertoorigen]['LONGITUDE'].unique()[0]
 latit= df[df['Origin']==aeropuertoorigen]['LATITUDE'].unique()[0]
-longit_dest= df[df['Dest']==a_dest]['LONGITUDE'].unique()[0]
-latit_dest= df[df['Dest']==a_dest]['LATITUDE'].unique()[0]
+longit_dest= df[df['Origin']==a_dest]['LONGITUDE'].unique()[0]
+latit_dest= df[df['Origin']==a_dest]['LATITUDE'].unique()[0]
 
 df_mapa = pd.DataFrame({'longit':longit, 'latit':latit, 'longit_dest':longit_dest, 'latit_dest':latit_dest}, index=[0])
 longit_media= round(((longit+longit_dest)/2), 4)
@@ -253,22 +253,6 @@ st.write(longit,latit,longit_dest,latit_dest, longit_media, latit_media)
 Y_RGB = [255, 255, 0, 80]
 G_RGB = [56, 191, 140, 80]
 
-# st.pydeck_chart(pdk.Deck( map_style=None, 
-#                          initial_view_state=pdk.ViewState(latitude=(longit - longit_dest),
-#                                                           longitude= (latit - latit_dest), 
-#                                                           zoom=2.6,
-#                                                           pitch=0,),
-#                          layers=[pdk.Layer("ArcLayer",
-#                                             data= df,
-#                                             get_width= 1,
-#                                             get_source_position=[longit, latit],
-#                                             get_target_position=[longit_dest, latit_dest],
-#                                             get_tilt=1,
-#                                             get_source_color=Y_RGB,
-#                                             get_target_color=G_RGB,
-#                                             pickable=True,
-#                                             auto_highlight=True,
-#                                             )]))
 
 CircleLayer= pdk.Layer("GreatCircleLayer",
                     data= df_mapa, 
