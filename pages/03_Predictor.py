@@ -280,7 +280,7 @@ CircleLayer= pdk.Layer("GreatCircleLayer",
 
 view_state = pdk.ViewState(latitude=((longit+longit_dest)/2),
                            longitude=((latit+latit_dest)/2),
-                           zoom=None,
+                           zoom=3,
                            pitch=50)
 
 st.pydeck_chart(pdk.Deck(layers= CircleLayer, initial_view_state= view_state))
