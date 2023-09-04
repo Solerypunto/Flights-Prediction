@@ -250,8 +250,8 @@ latit_media= round(((latit+latit_dest)/2), 4)
 
 st.write(longit,latit,longit_dest,latit_dest, longit_media, latit_media)
 
-Y_RGB = [255, 255, 0, 40]
-G_RGB = [56, 191, 140, 40]
+Y_RGB = [255, 255, 0, 80]
+G_RGB = [56, 191, 140, 80]
 
 # st.pydeck_chart(pdk.Deck( map_style=None, 
 #                          initial_view_state=pdk.ViewState(latitude=(longit - longit_dest),
@@ -272,7 +272,7 @@ G_RGB = [56, 191, 140, 40]
 
 CircleLayer= pdk.Layer("GreatCircleLayer",
                     data= df_mapa, 
-                    get_width = 20,
+                    get_width = 12,
                     get_source_position= ["longit", "latit"],
                     get_target_position= ["longit_dest", "latit_dest"],
                     get_source_color= Y_RGB,
@@ -284,7 +284,7 @@ CircleLayer= pdk.Layer("GreatCircleLayer",
 view_state = pdk.ViewState(latitude= 38,
                            longitude= -98.5,
                            zoom=3,
-                           pitch=50)
+                           pitch=70)
 
 st.pydeck_chart(pdk.Deck(layers= CircleLayer, initial_view_state= view_state))
 
