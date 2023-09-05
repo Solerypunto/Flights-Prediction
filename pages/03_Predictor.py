@@ -139,12 +139,33 @@ lat1 = float(df[df['Origin']== aeropuertoorigen]['LATITUDE'].unique()[0])
 lon1 = float(df[df['Origin']== aeropuertoorigen]['LONGITUDE'].unique()[0])
 lat2 = float((df[df['Origin']== a_dest]['LATITUDE'].unique()[0]))
 lon2 = float(df[df['Origin']== a_dest]['LONGITUDE'].unique()[0])
-# Calcular la diferencia entre las latitudes y longitudes.
-d_lat = lat2 - lat1
-d_lon = lon2 - lon1
 # Calcular la distancia entre los dos puntos.
-a = math.sin(d_lat/2)**2 + math.cos(lat1) * math.cos(lat2) * math.sin(d_lon/2)**2
-distance = 2 * 6371 * math.asin(math.sqrt(a))
+def rad2deg(radians):
+    degrees = radians * 180 / math.pi
+    return degrees
+
+def deg2rad(degrees):
+    radians = degrees * math.pi / 180
+    return radians
+
+def getDistanceBetweenPointsNew(latitude1, longitude1, latitude2, longitude2, unit = 'kilometers'):
+    
+    theta = longitude1 - longitude2
+    
+    distance = 60 * 1.1515 * rad2deg(
+        math.acos(
+            (math.sin(deg2rad(latitude1)) * math.sin(deg2rad(latitude2))) + 
+            (math.cos(deg2rad(latitude1)) * math.cos(deg2rad(latitude2)) * math.cos(deg2rad(theta)))
+        )
+    )
+    
+    if unit == 'miles':
+        return round(distance, 2)
+    if unit == 'kilometers':
+        return round(distance * 1.609344, 2)
+    
+distance = getDistanceBetweenPointsNew(lat1, lon1, lat2, lon2)
+
 # Tiempo en el aire
 velociddecrucero = 840
 tiempoaire = distance/velociddecrucero
