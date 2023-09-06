@@ -56,10 +56,14 @@ def main():
                 aquí va una intro del proyecto para que la gente se entere de que va, 
                 aquí va una intro del proyecto para que la gente se entere de que va, 
                 aquí va una intro del proyecto para que la gente se entere de que va, ''')
+    
+    kaggle = '[Dataset(Kaggle)](https://www.kaggle.com/datasets/robikscube/flight-delay-dataset-20182022)'
+    st.markdown(kaggle, unsafe_allow_html=True)
+    
     st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
-    if st.button(':bar_chart: Dataset (Kaggle)'):
-        webbrowser.open_new_tab('https://www.kaggle.com/datasets/robikscube/flight-delay-dataset-20182022?select=Combined_Flights_2022.csv')
+    # if st.button(':bar_chart: Dataset (Kaggle)'):
+    #     webbrowser.open_new_tab('https://www.kaggle.com/datasets/robikscube/flight-delay-dataset-20182022?select=Combined_Flights_2022.csv')
     
 if __name__ == '__main__':
     main()
