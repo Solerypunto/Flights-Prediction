@@ -5,17 +5,10 @@ import pydeck as pdk
 import plotly.express as px
 import matplotlib.pyplot as plt
 import seaborn as sns
-import datetime
 from streamlit_option_menu import option_menu
 from streamlit_lottie import st_lottie
 import requests
-import json
-import math
-import pickle as pkl
-from keras.models import load_model
-from sklearn.preprocessing import MinMaxScaler
-import tensorflow as tf
-import random
+from PIL import Image
 
 ##### Configuracion de la página ###############################################################
 
@@ -25,7 +18,7 @@ st.set_page_config(page_title= 'Flight delay predictor',
 
 
 
-## CSS ###############################################################   
+## CSS ###############################################################
 # tipografia   
 streamlit_style = """
 			<style>
@@ -43,3 +36,6 @@ st.markdown(streamlit_style, unsafe_allow_html=True)
 
 st.header('Modelo de predicción')
 
+
+
+st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
