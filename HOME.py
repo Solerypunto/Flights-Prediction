@@ -8,6 +8,7 @@ import seaborn as sns
 from streamlit_option_menu import option_menu
 from streamlit_lottie import st_lottie
 import requests
+import webbrowser
 
 ##### Configuracion de la página ###############################################################
 
@@ -57,8 +58,9 @@ def main():
                 aquí va una intro del proyecto para que la gente se entere de que va, ''')
     st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
-    pass
-
+    if st.button(':bar_chart: Dataset (Kaggle)'):
+        webbrowser.open_new_tab('https://www.kaggle.com/datasets/robikscube/flight-delay-dataset-20182022?select=Combined_Flights_2022.csv')
+    
 if __name__ == '__main__':
     main()
 
