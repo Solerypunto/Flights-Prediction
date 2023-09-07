@@ -146,6 +146,16 @@ st.write("Para más información, se puede revisar el código al que hacemos ref
 
 confesion = st.expander(label = 'Código')
 
+confesion.subheader('Calculamos "WheelsOff"')
+confesion.write("""```
+blktime_1 = datetime.datetime.strptime(str(int(franjahora.split('-')[1]) - random.randint(0, 59)), "%H%M")
+
+blktime_2 = (datetime.datetime.strptime(str(franjahora.split('-')[1]), "%H%M") + datetime.timedelta(minutes=random.randint(0, 59)))
+
+wheels_off = random.choice([blktime_1, blktime_2])
+```""")
+confesion.write("")
+confesion.subheader('Calculamos "WheelsOn"')
 confesion.write("""```
 # DISTANCIA ENTRE ORIGEN Y DESTINO USANDO LATITUD Y LONGITUD
 
@@ -188,14 +198,6 @@ tiempodevueloreal = tiempovuelo
 ```""")
 confesion.write("")
 confesion.write("""```
-# CALCULAMOS "wheels_off"
-
-blktime_1 = datetime.datetime.strptime(str(int(franjahora.split('-')[1]) - random.randint(0, 59)), "%H%M")
-
-blktime_2 = (datetime.datetime.strptime(str(franjahora.split('-')[1]), "%H%M") + datetime.timedelta(minutes=random.randint(0, 59)))
-
-wheels_off = random.choice([blktime_1, blktime_2])
-
 # CALCULAMOS "wheels_on" + DIFERENCIA HORARIA ENTRE ORIGEN Y DESTINO
 
 uso_1, uso_2, uso_3, uso_4, uso_5, uso_6, uso_7 = 1, 2, 3, 4, 5, 6, 21
