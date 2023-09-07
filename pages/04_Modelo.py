@@ -139,9 +139,9 @@ st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ff
 
 st.subheader('Conclusión')
 st.write('Una vez realizado el modelo, al realizar la predicción, comprobamos que había dos columnas significativamente relacionadas con la variable a predecir ```DepDelay```. Estas columnas son ```WheelsOff``` y ```WheelsOn```, las cuales, idealmente, no se incluirían en el vector para entrenar al modelo ya que afectan considerablemente el rendimiento del mismo.')
-st.write('Ambas columnas se encuentran en hora local y se tratan del momento en el que el avión guarda y saca las ruedas, respectivamente.')
-st.write('Si descartamos estas columnas, el modelo reduciría drásticamente su desempeño convirtiéndolo en poco fiable. Las columnas que se pueden usar para nuestro propósito, sin contar con ```WheelsOff``` y ```WheelsOn```, no son relevantes para entrenar un modelo fiable.')
-st.write('Llegados a este punto, con un modelo entrenado, el Streamlit a medias, decidimos usar estas columnas en nuestro "Predictor" generándolas a partir de la columna ```DepTimeBlk``` y la diferencia horaria entre el origen y el destino del vuelo.')
+st.write('Ambas columnas contienen la hora local del momento en el que el avión guarda y saca las ruedas, respectivamente.')
+st.write('Si descartamos estas columnas, el modelo reduciría drásticamente su desempeño, convirtiéndolo en poco fiable. Las columnas que se pueden usar para nuestro propósito, sin contar con ```WheelsOff``` y ```WheelsOn```, no son suficientemente relevantes para entrenar un modelo fiable.')
+st.write('Llegados a este punto, con un modelo entrenado y a medio camino de terminar el Streamlit, decidimos usar estas columnas en nuestro "Predictor". Las generamos a partir de la columna ```DepTimeBlk```, que contiene el intervalo de tiempo en el que saldría el vuelo, y la diferencia horaria entre el origen y el destino del vuelo.')
 st.write("Para más información, se puede revisar el código al que hacemos referencia en el desplegable.")
 
 confesion = st.expander(label = 'Código')
