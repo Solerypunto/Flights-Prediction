@@ -153,11 +153,8 @@ def getDistanceBetweenPointsNew(latitude1, longitude1, latitude2, longitude2, un
     theta = longitude1 - longitude2
     
     distance = 60 * 1.1515 * rad2deg(
-        math.acos(
-            (math.sin(deg2rad(latitude1)) * math.sin(deg2rad(latitude2))) + 
-            (math.cos(deg2rad(latitude1)) * math.cos(deg2rad(latitude2)) * math.cos(deg2rad(theta)))
-        )
-    )
+        math.acos((math.sin(deg2rad(latitude1)) * math.sin(deg2rad(latitude2))) + 
+                  (math.cos(deg2rad(latitude1)) * math.cos(deg2rad(latitude2)) * math.cos(deg2rad(theta)))))
     
     if unit == 'miles':
         return round(distance, 2)
