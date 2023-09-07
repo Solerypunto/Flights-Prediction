@@ -70,7 +70,7 @@ st.write("```f_regression``` mide la fuerza de la relación lineal entre una car
 st.image(f_reg, use_column_width = True)
 st.write("```mutual_info_regression``` mide la cantidad de información que una característica aporta sobre la variable objetivo. Un valor alto de entropía mutua indica que la característica es muy informativa sobre la variable objetivo.")
 st.image(mutual_reg, use_column_width = True)
-st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
+st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 # Modelo
 
@@ -105,7 +105,7 @@ st.write("Guardamos el modelo para posteriormente seguir entrenándolo.")
 st.write("Volvemos a entrenar el modelo con 2 epochs más esperando un mejor ```r2_score```.")
 st.image(model_history, use_column_width = True)
 
-st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
+st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 # Métrica y Visualización
 
@@ -133,7 +133,7 @@ col1.image(val_loss, use_column_width = True)
 col2.write("Mean Absolute Error")
 col2.image(val_mae, use_column_width = True)
 
-st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
+st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 # CONFESIÓN
 

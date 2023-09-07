@@ -138,7 +138,7 @@ st.write("Finalmente eliminamos columnas innecesarias y categóricas para dejar 
 imagen = Image.open("images/df_final_100%_real_no_fake.png")
 st.image(imagen, use_column_width = True)
 
-st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
+st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 ## Grafica 1
 st.subheader('Bubble chart')
@@ -161,7 +161,7 @@ fig = px.scatter(dfimpresionante,
 st.plotly_chart(fig, theme='streamlit', use_container_width=True)
 
 
-st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
+st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 ## Correlacion
 contenedor = st.container()
@@ -186,7 +186,7 @@ with contenedor:
         sns.heatmap(corre, annot=True, ax=ax, cmap= 'plasma')
         st.pyplot(fig, use_container_width=True)
 
-st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
+st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 ## Histograma
 
@@ -207,7 +207,7 @@ ax[1, 1].hist(df_big[df_big["Operating_AirlineIndex"] == 13.0]["DepDelay"], bins
 st.set_option('deprecation.showPyplotGlobalUse', False)
 st.pyplot()
 
-st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
+st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 ## Pie
 
@@ -220,7 +220,7 @@ fig = px.pie(data_frame = df_big,
 
 st.plotly_chart(figure_or_data = fig, use_container_width = True)
 
-st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
+st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 ## Mapa 3D
 

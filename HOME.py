@@ -58,7 +58,7 @@ def main():
     st.write('Luego, en "Modelo", te revelaremos los misterios detrás de la magia. Desglosaremos los pasos que seguimos para entrenar a nuestro modelo, cómo identificamos las columnas más cruciales y las métricas que usamos para medir su desempeño. Y para terminar, en "About", te conectaremos con nosotros a través de LinkedIn y GitHub, para que puedas seguir nuestras aventuras en el mundo de los datos.')
     st.write('¡Bienvenido a bordo de "Despega Con Calma: Predice Tu Vuelo"! 🌟✈️')
     
-    st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
+    st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
     
     kaggle = '[Flight Status Prediction | Kaggle](https://www.kaggle.com/datasets/robikscube/flight-delay-dataset-20182022)'
     st.markdown(kaggle, unsafe_allow_html=True)

@@ -71,7 +71,7 @@ franjahora = st.select_slider(label='Franja horaria', options=sorted(['0900-0959
                                                                '1400-1459', '0600-0659', '1700-1759', '2000-2059', '0001-0559',
                                                                '1900-1959', '1800-1859', '2100-2159', '2300-2359']))
 
-st.divider()
+st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 
 ## Origen
@@ -86,7 +86,7 @@ if len(aeropuerto) > 1:
 else:
     aeropuertoorigen = aeropuerto[0]
 
-st.divider()
+st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 
 ## Destino
@@ -105,7 +105,7 @@ if len(aeropuerto_destino) > 1:
 else:
     a_dest = aeropuerto_destino[0]
 
-st.divider()
+st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 
 ## Vuelo
@@ -117,7 +117,7 @@ Aerolinea = st.selectbox(label='Aerolinea', options = airline)
 Numerovuelo = sorted(df[(df["Origin"] == aeropuertoorigen) & (df["Dest"] == a_dest) & (df["Airline"] == Aerolinea)]["Flight_Number_Operating_Airline"].unique())
 Numero_vuelo = st.selectbox(label='Numero de vuelo', options=Numerovuelo)
 
-st.divider()
+st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 
 ## Opcionales 
@@ -132,7 +132,7 @@ with opcionales:
     taxi_out = st.select_slider(label= 'Taxi Out: Tiempo del avion en pista antes de despegar (en minutos)', options= taxiout)
     tail_number = st.selectbox(label= 'Elige tu avion', options= matricula, index=int(len(matricula)/2))
 
-st.divider()
+st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
 # distancia recorrida
 lat1 = float(df[df['Origin']== aeropuertoorigen]['LATITUDE'].unique()[0])
