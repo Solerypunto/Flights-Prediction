@@ -14,7 +14,7 @@ import webbrowser
 
 st.set_page_config(page_title= 'Flight delay predictor',
                    page_icon= ':airplane_departure:',
-                   initial_sidebar_state= 'expanded', layout= 'wide',)
+                   initial_sidebar_state= 'expanded', layout= 'centered')
 
 
 ## CSS ###############################################################   
