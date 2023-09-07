@@ -132,4 +132,3 @@ col1.image(val_loss, use_column_width = True)
 col2.write("Mean Absolute Error")
 col2.image(val_mae, use_column_width = True)
 
-st.markdown("""<hr style="height:2px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
