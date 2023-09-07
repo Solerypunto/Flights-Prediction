@@ -188,7 +188,7 @@ tiempodevueloreal = tiempovuelo
 ```""")
 confesion.write("")
 confesion.write("""```
-# CALCULAMOS LAS VARIABLES "wheels_off"
+# CALCULAMOS "wheels_off"
 
 blktime_1 = datetime.datetime.strptime(str(int(franjahora.split('-')[1]) - random.randint(0, 59)), "%H%M")
 
