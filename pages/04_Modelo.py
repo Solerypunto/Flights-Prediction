@@ -36,7 +36,7 @@ st.markdown(streamlit_style, unsafe_allow_html=True)
 st.markdown("""
     <style type="text/css">
     img {
-    border-radius: 15px;
+    border-radius: 10px;
     }
     </style>
     """, unsafe_allow_html=True)
