@@ -56,7 +56,7 @@ dfwac = pd.DataFrame(wac,columns=['key', 'values'])
 #####################################################################################################################
 ##### Predictor ###############################################################
 
-st.header('¿Cual es tu vuelo?')
+st.header('¿Cuál es tu vuelo?')
 
 st_lottie(requests.get("https://lottie.host/e94e8eb0-c1ed-41c3-b6da-b22a5104f594/4sofR9rtYA.json").json(), height=200, key="paperplane")
 
@@ -64,7 +64,7 @@ st_lottie(requests.get("https://lottie.host/e94e8eb0-c1ed-41c3-b6da-b22a5104f594
 ### Imputs usuario
 ## Fecha
 st.subheader('Fecha')
-fechavuelo = st.date_input("¿Cuando es tu vuelo?", datetime.date.today())
+fechavuelo = st.date_input("¿Cuándo es tu vuelo?", datetime.date.today())
 
 franjahora = st.select_slider(label='Franja horaria', options=sorted(['0900-0959', '1000-1059', '2200-2259', '1500-1559', '1100-1159',
                                                                '0800-0859', '1300-1359', '1600-1659', '1200-1259', '0700-0759',
@@ -115,7 +115,7 @@ airline = sorted(df[(df['Origin']==aeropuertoorigen) & (df['Dest']==a_dest)]['Ai
 Aerolinea = st.selectbox(label='Aerolinea', options = airline)
 
 Numerovuelo = sorted(df[(df["Origin"] == aeropuertoorigen) & (df["Dest"] == a_dest) & (df["Airline"] == Aerolinea)]["Flight_Number_Operating_Airline"].unique())
-Numero_vuelo = st.selectbox(label='Numero de vuelo', options=Numerovuelo)
+Numero_vuelo = st.selectbox(label='Número de vuelo', options=Numerovuelo)
 
 st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
@@ -129,8 +129,8 @@ matricula = df[df['Airline']==Aerolinea]['Tail_Number'].unique().tolist()
 taxiout = sorted(df[df['Airline']==Aerolinea]['TaxiOut'].unique().tolist())
 
 with opcionales:
-    taxi_out = st.select_slider(label= 'Taxi Out: Tiempo del avion en pista antes de despegar (en minutos)', options= taxiout)
-    tail_number = st.selectbox(label= 'Elige tu avion', options= matricula, index=int(len(matricula)/2))
+    taxi_out = st.select_slider(label= 'Taxi Out: Tiempo del avión en pista antes de despegar (en minutos)', options= taxiout)
+    tail_number = st.selectbox(label= 'Elige tu avión', options= matricula, index=int(len(matricula)/2))
 
 st.markdown("""<hr style="height:1px;border:none;color:#333;background-color:#ffe100;" /> """, unsafe_allow_html=True)
 
@@ -178,7 +178,7 @@ st.subheader('''Tu vuelo \n
             Destino: {} ({}) \n 
             Fecha: {}\n
             Distancia a recorrer: {}km\n
-            Duracion de viaje: {}h\n
+            Duración de viaje: {}h\n
             Tiempo en el aire: {}h'''.format(ciudadorigen, aeropuertoorigen, ciudaddest,
                                              a_dest, fechavuelo, round(distance, 2), round(tiempovuelo, 2), 
                                              round(tiempoaire, 2)))

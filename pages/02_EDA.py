@@ -86,7 +86,7 @@ st_lottie(requests.get("https://lottie.host/e44dedf0-4f98-49e3-ab19-709275c763ae
 
 ##
 st.subheader('Dataset')
-st.write('''El dataset contiene multiples documentos, se pueden agrupar en datos en crudo y datos ya ordenados, Optamos por quedarnos con los ordenados:
+st.write('''El dataset contiene múltiples documentos que se pueden agrupar en datos en crudo y datos ya ordenados. Optamos por quedarnos con los ordenados:
         5 documentos. \n
             Tamaño total del dataset: 29.193.782 x 61''')
 st.write("")
